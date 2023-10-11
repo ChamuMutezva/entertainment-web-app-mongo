@@ -1,18 +1,43 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import clientPromise from "../lib/mongodb";
+import type { InferGetServerSidePropsType } from "next";
 
-export default function Home() {
-    const [movies, setMovies] = useState([]);
-    const logMovies = async () => {
-        const response = await fetch("http://localhost:3000/api/movies");
-        const moviesList = await response.json();
-        console.log(moviesList);
-        return setMovies(moviesList);
-    };
-    
-    useEffect(() => {
-        logMovies();
-    }, []);
+type ConnectionStatus = {
+    isConnected: boolean;
+};
+
+export async function getServerSideProps() {
+    try {
+        await clientPromise;
+        // `await clientPromise` will use the default database passed in the MONGODB_URI
+        // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
+        //
+        const client = await clientPromise;
+        const db = client.db("movies_data");
+        //
+        // Then you can execute queries against your database like so:
+        // db.find({}) or any of the MongoDB Node Driver commands
+        const movies = await db
+            .collection("movies")
+            .find({})
+            .sort({ metacritic: -1 })
+            .toArray();
+
+        return {
+            props: {
+                movies: JSON.parse(JSON.stringify(movies)),
+                isConnected: true,
+            },
+        };
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+export default function Home({
+    isConnected,
+    movies,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <div className="container">
             <Head>
