@@ -1,6 +1,7 @@
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import type { InferGetServerSidePropsType } from "next";
+import Background from "../components/background";
 
 type ConnectionStatus = {
     isConnected: boolean;
@@ -43,28 +44,46 @@ export default function Home({
             <Head>
                 <title>Create Next App</title>
                 <link rel="icon" href="/favicon.ico" />
+               {/* <script src="https://cdn.tailwindcss.com"></script> */}
             </Head>
 
-            <main>
+            <main className="bg-indigo-500">
                 <div>
                     <h1> Movies 2023</h1>
+                    <h2>Example 1: Next.js pages with MongoDB</h2>
                     <ul>
                         {movies?.map(
                             (movie: {
+                                src: string;
                                 title: string;
-                                year: string;
+                                year: number;
                                 category: string;
+                                rating: string;
                             }) => (
                                 <li key={movie.title}>
-                                    <h2>{movie.title}</h2>
+                                    <Background
+                                        priority={movie.title === "Beyond Earth" ? true : false}
+                                        src={`/assets/thumbnails/${movie.title
+                                            .replace(/'/g, "")
+                                            .replace(/:/g, "")
+                                            .split(" ")
+                                            .join("-")
+                                            .toLowerCase()}/regular/small.jpg`}
+                                    />
+                                    <h2
+                                        className={`text-[4rem] z-[1] relative`}
+                                    >
+                                        {movie.title}
+                                    </h2>
                                     <h3>{movie.year}</h3>
                                     <p>{movie.category}</p>
+                                    <p>{movie.rating}</p>
                                 </li>
                             )
                         )}
                     </ul>
                 </div>
-            </main>
+            </main>           
         </div>
     );
 }
