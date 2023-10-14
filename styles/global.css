@@ -2,14 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.container {
-    min-height: 100vh;
-    padding: 0 0.5rem;
+body {
+    min-height: 100vh;   
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+@layer base {
+    :root {
+        --color-white: 0deg 0% 100%;
+        --semi-dark-blue: 223deg 36% 13%;
+        --greyish-blue: 223deg 23% 46%;
+        --dark-blue: 224deg 30% 9%;
+        --color-red: 0deg 97% 63%;
+    }
+}
+/* red hsla(0, 97%, 63%, 1)  rgba(252, 71, 71, 1)*/
+/* dark blue hsla(224, 30%, 9%, 1)   rgba(16, 20, 30, 1)   */
+/* greyish blue hsla(223, 23%, 46%, 1) rgba(90, 105, 143, 1)  */
+/* semi dark blue hsla(223, 36%, 13%, 1)  rgba(22, 29, 47, 1) */
+/* white hsla(0, 0%, 100%, 1) rgba(255, 255, 255, 1) */
+
+/*
 
 main {
     padding: 5rem 0;
@@ -148,3 +164,4 @@ body {
 * {
     box-sizing: border-box;
 }
+*/

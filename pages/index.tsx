@@ -1,7 +1,8 @@
-import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import type { InferGetServerSidePropsType } from "next";
 import Background from "../components/background";
+import Link from "next/link";
+import Image from "next/image";
 
 type ConnectionStatus = {
     isConnected: boolean;
@@ -40,16 +41,75 @@ export default function Home({
     movies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
-        <div className="container">
-            <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/favicon.ico" />
-               {/* <script src="https://cdn.tailwindcss.com"></script> */}
-            </Head>
-
-            <main className="bg-indigo-500">
+        <div className="container w-screen">
+            <header className="flex justify-between items-center p-6 bg-semiDarkBlue">
+                <Link href={"/"} aria-label="home">
+                    <Image
+                        src={"/assets/logo.svg"}
+                        width={33}
+                        height={27}
+                        alt=""
+                    />
+                </Link>
+                <nav>
+                    <ul className="flex gap-5">
+                        <li>
+                            <Link href={"/"}>
+                                <Image
+                                    src={"/assets/icon-nav-home.svg"}
+                                    width={20}
+                                    height={20}
+                                    alt=""
+                                />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={"/"} aria-label="movies">
+                                <Image
+                                    src={"/assets/icon-nav-movies.svg"}
+                                    width={20}
+                                    height={20}
+                                    alt=""
+                                />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={"/"} aria-label="tv series">
+                                <Image
+                                    src={"/assets/icon-nav-tv-series.svg"}
+                                    width={20}
+                                    height={20}
+                                    alt=""
+                                />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href={"/"}
+                                aria-label="bookmarked movies and series"
+                            >
+                                <Image
+                                    src={"/assets/icon-nav-bookmark.svg"}
+                                    width={17}
+                                    height={20}
+                                    alt=""
+                                />
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+                <Link href={"/"}>
+                    <Image
+                        src={"/assets/image-avatar.png"}
+                        width={24}
+                        height={24}
+                        alt=""
+                    />
+                </Link>
+            </header>
+            <main className="">
                 <div>
-                    <h1> Movies 2023</h1>
+                    <h1 className="text-red"> Movies 2023</h1>
                     <h2>Example 1: Next.js pages with MongoDB</h2>
                     <ul>
                         {movies?.map(
@@ -62,7 +122,11 @@ export default function Home({
                             }) => (
                                 <li key={movie.title}>
                                     <Background
-                                        priority={movie.title === "Beyond Earth" ? true : false}
+                                        priority={
+                                            movie.title === "Beyond Earth"
+                                                ? true
+                                                : false
+                                        }
                                         src={`/assets/thumbnails/${movie.title
                                             .replace(/'/g, "")
                                             .replace(/:/g, "")
@@ -71,7 +135,7 @@ export default function Home({
                                             .toLowerCase()}/regular/small.jpg`}
                                     />
                                     <h2
-                                        className={`text-[4rem] z-[1] relative`}
+                                        className={`text-[1.5rem] z-[1] relative`}
                                     >
                                         {movie.title}
                                     </h2>
@@ -83,7 +147,7 @@ export default function Home({
                         )}
                     </ul>
                 </div>
-            </main>           
+            </main>
         </div>
     );
 }
