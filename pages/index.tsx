@@ -3,6 +3,7 @@ import type { InferGetServerSidePropsType } from "next";
 import Background from "../components/background";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 
 type ConnectionStatus = {
     isConnected: boolean;
@@ -42,6 +43,10 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <div className="container w-screen">
+             <Head>
+                <title>Entertainment web app</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <header className="flex justify-between items-center p-6 bg-semiDarkBlue">
                 <Link href={"/"} aria-label="home">
                     <Image
