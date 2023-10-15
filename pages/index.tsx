@@ -1,11 +1,11 @@
 import clientPromise from "../lib/mongodb";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
 import Background from "../components/background";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { ReactChild, ReactFragment, ReactPortal } from "react";
 
 type ConnectionStatus = {
     isConnected: boolean;
@@ -43,14 +43,39 @@ export default function Home({
     isConnected,
     movies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const ref = useRef<HTMLLIElement>(null);
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+
+    useLayoutEffect(() => {
+        setWidth(ref.current?.offsetWidth!);
+        setHeight(ref.current?.offsetWidth! * 1.715);
+        // setHeight("auto");
+    }, [width]);
+
     const slideLeft = () => {
+        console.log(width);
         let slider = document.getElementById("slider");
-        slider!.scrollLeft = slider!.scrollLeft - 307;
+        slider!.scrollLeft = slider!.scrollLeft - width;
     };
     const slideRight = () => {
         let slider = document.getElementById("slider");
-        slider!.scrollLeft = slider!.scrollLeft + 307;
+        slider!.scrollLeft = slider!.scrollLeft + width;
     };
+
+    useEffect(() => {
+        function handleWindowResize() {
+            setWidth(ref.current?.offsetWidth!);
+            setHeight(ref.current?.offsetWidth! * 1.715);
+        }
+
+        window.addEventListener("resize", handleWindowResize);
+
+        return () => {
+            window.removeEventListener("resize", handleWindowResize);
+        };
+    }, [width]);
+
     return (
         <div className="container w-screen">
             <Head>
@@ -152,19 +177,20 @@ export default function Home({
                             Search for movies or Tv series
                         </label>
                     </form>
-                    <div>
-                        <h2>Trending</h2>
+                    <div className="flex flex-col gap-4">
+                        <h2 className="px-12">Trending</h2>
                         <div className="flex relative items-center gap-4">
                             <button
                                 onClick={slideLeft}
                                 className="opacity-50 cursor-pointer hover:opacity-100"
                             >
-                                <MdChevronLeft size={40} />
+                                <MdChevronLeft size={30} />
                             </button>
 
                             <ul
                                 id="slider"
-                                className="slider w-full h-full overflow-x-scroll scroll whitespace-nowrap overscroll-contain scroll-smooth snap-mandatory snap-x scale-105 ease-in-out duration-300"
+                                className="slider w-full h-full overflow-x-scroll scroll whitespace-nowrap
+                                 overscroll-contain scroll-smooth scale-105 ease-in-out duration-300"
                             >
                                 {movies
                                     ?.filter(
@@ -176,10 +202,14 @@ export default function Home({
                                             title: string;
                                             category: string;
                                             isTrending: boolean;
+                                            isBookmarked: boolean;
+                                            year: number;
+                                            rating: string;
                                         }) => (
                                             <li
+                                                ref={ref}
                                                 key={movie.title}
-                                                className="min-w-[15rem] inline-block p-2 cursor-pointer"
+                                                className="relative inline-block p-2 cursor-pointer"
                                             >
                                                 <picture>
                                                     <source
@@ -196,7 +226,9 @@ export default function Home({
                                                         height={280}
                                                         priority={
                                                             movie.title ===
-                                                            "Beyond Earth"
+                                                                "Beyond Earth" ||
+                                                            movie.title ===
+                                                                "Undiscovered Cities"
                                                         }
                                                         src={`/assets/thumbnails/${movie.title
                                                             .replace(/'/g, "")
@@ -206,13 +238,48 @@ export default function Home({
                                                             .toLowerCase()}/trending/small.jpg`}
                                                     />
                                                 </picture>
-                                                <h2
-                                                    className={`text-[1.5rem] z-[1] relative w-full object-cover`}
-                                                >
-                                                    {movie.title}
-                                                </h2>
-                                                <p>{movie.category}</p>
-                                                <p>{movie.isTrending}</p>
+                                                <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between items-end p-4">
+                                                    <div className="rounded-full bg-greyishBlue p-2 inline-block">
+                                                        <Image
+                                                            src={`${
+                                                                movie.isBookmarked
+                                                                    ? "/assets/icon-bookmark-full.svg"
+                                                                    : "/assets/icon-bookmark-empty.svg"
+                                                            }`}
+                                                            alt=""
+                                                            width={12}
+                                                            height={14}
+                                                        />
+                                                    </div>
+
+                                                    <div className="w-full">
+                                                        <div className="flex justify-start items-center gap-3">
+                                                            <p>{movie.year}</p>
+                                                            <Image
+                                                                width={12}
+                                                                height={12}
+                                                                alt=""
+                                                                src={`${
+                                                                    movie.category ===
+                                                                    "Movie"
+                                                                        ? "/assets/icon-category-movie.svg"
+                                                                        : "/assets/icon-category-tv.svg"
+                                                                }`}
+                                                            />
+                                                            <p>
+                                                                {movie.category}
+                                                            </p>
+                                                            <p>
+                                                                {movie.rating}
+                                                            </p>
+                                                        </div>
+                                                        <h2
+                                                            className={`text-[1.5rem] z-[1] relative w-full object-cover`}
+                                                        >
+                                                            {movie.title}
+                                                        </h2>
+                                                    </div>
+                                                </div>
                                             </li>
                                         )
                                     )}
@@ -221,65 +288,69 @@ export default function Home({
                                 onClick={slideRight}
                                 className="opacity-50 cursor-pointer hover:opacity-100"
                             >
-                                <MdChevronRight size={40} />
+                                <MdChevronRight size={30} />
                             </button>
                         </div>
                     </div>
-                    <ul>
-                        {movies?.map(
-                            (movie: {
-                                src: string;
-                                title: string;
-                                year: number;
-                                category: string;
-                                rating: string;
-                            }) => (
-                                <li key={movie.title}>
-                                    <picture>
-                                        <source
-                                            media="(min-width: 64rem)"
-                                            srcSet={`/assets/thumbnails/${movie.title
-                                                .replace(/'/g, "")
-                                                .replace(/:/g, "")
-                                                .split(" ")
-                                                .join("-")
-                                                .toLowerCase()}/regular/large.jpg`}
-                                        />
-                                        <source
-                                            media="(min-width: 38.75rem)"
-                                            srcSet={`/assets/thumbnails/${movie.title
-                                                .replace(/'/g, "")
-                                                .replace(/:/g, "")
-                                                .split(" ")
-                                                .join("-")
-                                                .toLowerCase()}/regular/medium.jpg`}
-                                        />
-                                        <Background
-                                            width={328}
-                                            height={220}
-                                            priority={
-                                                movie.title === "Beyond Earth"
-                                            }
-                                            src={`/assets/thumbnails/${movie.title
-                                                .replace(/'/g, "")
-                                                .replace(/:/g, "")
-                                                .split(" ")
-                                                .join("-")
-                                                .toLowerCase()}/regular/small.jpg`}
-                                        />
-                                    </picture>
-                                    <h2
-                                        className={`text-[1.5rem] z-[1] relative`}
-                                    >
-                                        {movie.title}
-                                    </h2>
-                                    <h3>{movie.year}</h3>
-                                    <p>{movie.category}</p>
-                                    <p>{movie.rating}</p>
-                                </li>
-                            )
-                        )}
-                    </ul>
+                    <div>
+                        <h2>Recommended for you</h2>
+                        <ul className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+                            {movies?.map(
+                                (movie: {
+                                    src: string;
+                                    title: string;
+                                    year: number;
+                                    category: string;
+                                    rating: string;
+                                }) => (
+                                    <li key={movie.title}>
+                                        <picture className="flex justify-center items-center">
+                                            <source
+                                                media="(min-width: 64rem)"
+                                                srcSet={`/assets/thumbnails/${movie.title
+                                                    .replace(/'/g, "")
+                                                    .replace(/:/g, "")
+                                                    .split(" ")
+                                                    .join("-")
+                                                    .toLowerCase()}/regular/large.jpg`}
+                                            />
+                                            <source
+                                                media="(min-width: 38.75rem)"
+                                                srcSet={`/assets/thumbnails/${movie.title
+                                                    .replace(/'/g, "")
+                                                    .replace(/:/g, "")
+                                                    .split(" ")
+                                                    .join("-")
+                                                    .toLowerCase()}/regular/medium.jpg`}
+                                            />
+                                            <Background
+                                                width={328}
+                                                height={220}
+                                                priority={
+                                                    movie.title ===
+                                                    "Beyond Earth"
+                                                }
+                                                src={`/assets/thumbnails/${movie.title
+                                                    .replace(/'/g, "")
+                                                    .replace(/:/g, "")
+                                                    .split(" ")
+                                                    .join("-")
+                                                    .toLowerCase()}/regular/small.jpg`}
+                                            />
+                                        </picture>
+                                        <h2
+                                            className={`text-[1.5rem] z-[1] relative`}
+                                        >
+                                            {movie.title}
+                                        </h2>
+                                        <h3>{movie.year}</h3>
+                                        <p>{movie.category}</p>
+                                        <p>{movie.rating}</p>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    </div>
                 </div>
             </main>
         </div>
