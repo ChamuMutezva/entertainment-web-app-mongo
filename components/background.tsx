@@ -1,15 +1,25 @@
 import React from "react";
 import Image from "next/image";
 
-function Background({ src, priority }: { src: string; priority: boolean }) {
+function Background({
+    src,
+    priority,
+    width,
+    height,
+}: {
+    src: string;
+    priority: boolean;
+    width: number;
+    height: number;
+}) {
     return (
         <Image
             src={src}
             alt=""
-            priority
+            priority={priority}
             quality={100}
-            height={220}
-            width={328}
+            height={height}
+            width={width}
             className="max-w-full block"
             style={{
                 objectFit: "cover",

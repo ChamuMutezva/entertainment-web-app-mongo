@@ -4,6 +4,8 @@ import Background from "../components/background";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { ReactChild, ReactFragment, ReactPortal } from "react";
 
 type ConnectionStatus = {
     isConnected: boolean;
@@ -41,9 +43,17 @@ export default function Home({
     isConnected,
     movies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const slideLeft = () => {
+        let slider = document.getElementById("slider");
+        slider!.scrollLeft = slider!.scrollLeft - 307;
+    };
+    const slideRight = () => {
+        let slider = document.getElementById("slider");
+        slider!.scrollLeft = slider!.scrollLeft + 307;
+    };
     return (
         <div className="container w-screen">
-             <Head>
+            <Head>
                 <title>Entertainment web app</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -112,10 +122,109 @@ export default function Home({
                     />
                 </Link>
             </header>
-            <main className="">
-                <div>
-                    <h1 className="text-red"> Movies 2023</h1>
-                    <h2>Example 1: Next.js pages with MongoDB</h2>
+            <main className="bg-darkBlue text-white">
+                <div className="py-6">
+                    <h1 className="text-red sr-only">Entertainment center</h1>
+                    <form noValidate className="relative py-4 bg-inherit">
+                        <input
+                            type="search"
+                            name="search-movie"
+                            id="search-movie"
+                            placeholder=" "
+                            className="w-full text-darkBlue bg-darkBlue focus:ring-0 peer"
+                        />
+                        <label
+                            htmlFor="search-movie"
+                            className="absolute flex items-center gap-2 text-greyishBlue top-6 left-2 transition-all scale-75 px-1 duration-300
+                            peer-placeholder-shown:scale-100 
+                            peer-placeholder-shown:top-4.5
+                            peer-placeholder-shown:left-2 
+                            peer-placeholder-shown:text-slate:500 
+                            peer-focus:-top-3 peer-focus:scale-75
+                            peer-focus:-left-2 peer-focus:text-white"
+                        >
+                            <Image
+                                src={"/assets/icon-search.svg"}
+                                width={32}
+                                height={32}
+                                alt=""
+                            />
+                            Search for movies or Tv series
+                        </label>
+                    </form>
+                    <div>
+                        <h2>Trending</h2>
+                        <div className="flex relative items-center gap-4">
+                            <button
+                                onClick={slideLeft}
+                                className="opacity-50 cursor-pointer hover:opacity-100"
+                            >
+                                <MdChevronLeft size={40} />
+                            </button>
+
+                            <ul
+                                id="slider"
+                                className="slider w-full h-full overflow-x-scroll scroll whitespace-nowrap overscroll-contain scroll-smooth snap-mandatory snap-x scale-105 ease-in-out duration-300"
+                            >
+                                {movies
+                                    ?.filter(
+                                        (movie: { isTrending: boolean }) =>
+                                            movie.isTrending
+                                    )
+                                    .map(
+                                        (movie: {
+                                            title: string;
+                                            category: string;
+                                            isTrending: boolean;
+                                        }) => (
+                                            <li
+                                                key={movie.title}
+                                                className="min-w-[15rem] inline-block p-2 cursor-pointer"
+                                            >
+                                                <picture>
+                                                    <source
+                                                        media="(min-width: 38.75rem)"
+                                                        srcSet={`/assets/thumbnails/${movie.title
+                                                            .replace(/'/g, "")
+                                                            .replace(/:/g, "")
+                                                            .split(" ")
+                                                            .join("-")
+                                                            .toLowerCase()}/trending/large.jpg`}
+                                                    />
+                                                    <Background
+                                                        width={480}
+                                                        height={280}
+                                                        priority={
+                                                            movie.title ===
+                                                            "Beyond Earth"
+                                                        }
+                                                        src={`/assets/thumbnails/${movie.title
+                                                            .replace(/'/g, "")
+                                                            .replace(/:/g, "")
+                                                            .split(" ")
+                                                            .join("-")
+                                                            .toLowerCase()}/trending/small.jpg`}
+                                                    />
+                                                </picture>
+                                                <h2
+                                                    className={`text-[1.5rem] z-[1] relative w-full object-cover`}
+                                                >
+                                                    {movie.title}
+                                                </h2>
+                                                <p>{movie.category}</p>
+                                                <p>{movie.isTrending}</p>
+                                            </li>
+                                        )
+                                    )}
+                            </ul>
+                            <button
+                                onClick={slideRight}
+                                className="opacity-50 cursor-pointer hover:opacity-100"
+                            >
+                                <MdChevronRight size={40} />
+                            </button>
+                        </div>
+                    </div>
                     <ul>
                         {movies?.map(
                             (movie: {
@@ -126,19 +235,39 @@ export default function Home({
                                 rating: string;
                             }) => (
                                 <li key={movie.title}>
-                                    <Background
-                                        priority={
-                                            movie.title === "Beyond Earth"
-                                                ? true
-                                                : false
-                                        }
-                                        src={`/assets/thumbnails/${movie.title
-                                            .replace(/'/g, "")
-                                            .replace(/:/g, "")
-                                            .split(" ")
-                                            .join("-")
-                                            .toLowerCase()}/regular/small.jpg`}
-                                    />
+                                    <picture>
+                                        <source
+                                            media="(min-width: 64rem)"
+                                            srcSet={`/assets/thumbnails/${movie.title
+                                                .replace(/'/g, "")
+                                                .replace(/:/g, "")
+                                                .split(" ")
+                                                .join("-")
+                                                .toLowerCase()}/regular/large.jpg`}
+                                        />
+                                        <source
+                                            media="(min-width: 38.75rem)"
+                                            srcSet={`/assets/thumbnails/${movie.title
+                                                .replace(/'/g, "")
+                                                .replace(/:/g, "")
+                                                .split(" ")
+                                                .join("-")
+                                                .toLowerCase()}/regular/medium.jpg`}
+                                        />
+                                        <Background
+                                            width={328}
+                                            height={220}
+                                            priority={
+                                                movie.title === "Beyond Earth"
+                                            }
+                                            src={`/assets/thumbnails/${movie.title
+                                                .replace(/'/g, "")
+                                                .replace(/:/g, "")
+                                                .split(" ")
+                                                .join("-")
+                                                .toLowerCase()}/regular/small.jpg`}
+                                        />
+                                    </picture>
                                     <h2
                                         className={`text-[1.5rem] z-[1] relative`}
                                     >
