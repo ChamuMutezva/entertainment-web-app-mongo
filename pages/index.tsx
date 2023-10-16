@@ -1,3 +1,4 @@
+"use client";
 import clientPromise from "../lib/mongodb";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
@@ -6,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import Navigation from "../components/navigation";
 
 type ConnectionStatus = {
     isConnected: boolean;
@@ -49,8 +51,7 @@ export default function Home({
 
     useLayoutEffect(() => {
         setWidth(ref.current?.offsetWidth!);
-        setHeight(ref.current?.offsetWidth! * 1.715);
-        // setHeight("auto");
+        setHeight(ref.current?.offsetWidth! * 1.715);       
     }, [width]);
 
     const slideLeft = () => {
@@ -91,53 +92,9 @@ export default function Home({
                         alt=""
                     />
                 </Link>
-                <nav>
-                    <ul className="flex gap-5">
-                        <li>
-                            <Link href={"/"}>
-                                <Image
-                                    src={"/assets/icon-nav-home.svg"}
-                                    width={20}
-                                    height={20}
-                                    alt=""
-                                />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={"/"} aria-label="movies">
-                                <Image
-                                    src={"/assets/icon-nav-movies.svg"}
-                                    width={20}
-                                    height={20}
-                                    alt=""
-                                />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={"/"} aria-label="tv series">
-                                <Image
-                                    src={"/assets/icon-nav-tv-series.svg"}
-                                    width={20}
-                                    height={20}
-                                    alt=""
-                                />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={"/"}
-                                aria-label="bookmarked movies and series"
-                            >
-                                <Image
-                                    src={"/assets/icon-nav-bookmark.svg"}
-                                    width={17}
-                                    height={20}
-                                    alt=""
-                                />
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+
+                <Navigation />
+
                 <Link href={"/"}>
                     <Image
                         src={"/assets/image-avatar.png"}
