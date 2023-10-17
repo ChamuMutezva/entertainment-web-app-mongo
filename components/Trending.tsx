@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Background from "./background";
@@ -18,6 +18,13 @@ function Trending({ movies }: { movies: [] }) {
     };
 
     useLayoutEffect(() => {
+        setWidth(ref.current?.offsetWidth!);
+        setHeight(ref.current?.offsetWidth! * 1.715);
+       
+    }, [width]);
+
+    useEffect(() => {
+
         function handleWindowResize() {
             setWidth(ref.current?.offsetWidth!);
             setHeight(ref.current?.offsetWidth! * 1.715);
@@ -28,7 +35,7 @@ function Trending({ movies }: { movies: [] }) {
         return () => {
             window.removeEventListener("resize", handleWindowResize);
         };
-    }, [width]);
+    }, [width])
 
     return (
         <div className="flex flex-col gap-4">
