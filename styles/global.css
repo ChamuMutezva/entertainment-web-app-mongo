@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    min-height: 100vh;   
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,9 +25,14 @@ ul::-webkit-scrollbar {
 }
 
 .slider {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox  */ 
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox  */
 }
+
+input:focus-within ~ label,
+input:not(:placeholder-shown) ~ label {
+    @apply transform scale-75 -translate-y-10;
+} 
 
 /*
 @layer utilities {
