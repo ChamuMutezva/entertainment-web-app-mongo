@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+"use client";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Background from "./background";
@@ -7,24 +8,23 @@ function Trending({ movies }: { movies: [] }) {
     const ref = useRef<HTMLLIElement>(null);
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
+
     const slideLeft = () => {
-        console.log(width);
         let slider = document.getElementById("slider");
-        slider!.scrollLeft = slider!.scrollLeft - width;
+        if (slider) {
+            slider.scrollLeft = slider.scrollLeft - width;
+        }
     };
     const slideRight = () => {
         let slider = document.getElementById("slider");
-        slider!.scrollLeft = slider!.scrollLeft + width;
+        if (slider) {
+            slider.scrollLeft = slider.scrollLeft + width;
+        }
     };
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setWidth(ref.current?.offsetWidth!);
         setHeight(ref.current?.offsetWidth! * 1.715);
-       
-    }, [width]);
-
-    useEffect(() => {
-
         function handleWindowResize() {
             setWidth(ref.current?.offsetWidth!);
             setHeight(ref.current?.offsetWidth! * 1.715);
@@ -35,7 +35,7 @@ function Trending({ movies }: { movies: [] }) {
         return () => {
             window.removeEventListener("resize", handleWindowResize);
         };
-    }, [width])
+    }, [width]);
 
     return (
         <div className="flex flex-col gap-4">
@@ -69,7 +69,7 @@ function Trending({ movies }: { movies: [] }) {
                                 <li
                                     ref={ref}
                                     key={movie.title}
-                                    className="relative inline-block p-2 cursor-pointer"
+                                    className="relative inline-block rounded-lg px-2 overflow-hidden cursor-pointer"
                                 >
                                     <picture>
                                         <source
