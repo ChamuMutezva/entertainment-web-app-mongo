@@ -27,7 +27,7 @@ function Navigation() {
             </Link>
         </li>
         <li>
-            <Link href={"/"} aria-label="tv series">
+            <Link href={"/tvSeries"} aria-label="tv series">
                 <Image
                     src={"/assets/icon-nav-tv-series.svg"}
                     width={20}
