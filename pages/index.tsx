@@ -1,7 +1,6 @@
 import clientPromise from "../lib/mongodb";
 import { ChangeEvent, useRef, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
-import Background from "../components/background";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -29,7 +28,7 @@ export async function getServerSideProps() {
         const movies = await db
             .collection("movies")
             .find({})
-            .sort({ metacritic: -1 })
+            .sort({ title: 1 })
             .toArray();
 
         return {
@@ -44,10 +43,8 @@ export async function getServerSideProps() {
 }
 
 export default function Home({
-    isConnected,
     movies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    const ref = useRef<HTMLLIElement>(null);
     const [searchText, setSearchText] = useState("");
 
     function searchMovie(event: ChangeEvent<HTMLInputElement>): void {
@@ -60,27 +57,7 @@ export default function Home({
                 <title>Entertainment web app</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <header className="flex justify-between items-center p-6 bg-semiDarkBlue">
-                <Link href={"/"} aria-label="home">
-                    <Image
-                        src={"/assets/logo.svg"}
-                        width={33}
-                        height={27}
-                        alt=""
-                    />
-                </Link>
 
-                <Navigation />
-
-                <Link href={"/"}>
-                    <Image
-                        src={"/assets/image-avatar.png"}
-                        width={24}
-                        height={24}
-                        alt=""
-                    />
-                </Link>
-            </header>
             <main className="bg-darkBlue text-white">
                 <div className="py-6">
                     <h1 className="text-red sr-only">Entertainment center</h1>

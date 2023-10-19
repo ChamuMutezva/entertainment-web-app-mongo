@@ -38,7 +38,7 @@ function Navigation() {
         </li>
         <li>
             <Link
-                href={"/"}
+                href={"/bookmarked"}
                 aria-label="bookmarked movies and series"
             >
                 <Image

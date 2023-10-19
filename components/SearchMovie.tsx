@@ -6,13 +6,13 @@ function SearchMovie(props: {
     searchText: string;
 }) {
     return (
-        <form noValidate className="relative py-4 bg-inherit">
+        <form noValidate className="relative p-4 bg-inherit">
             <input
                 type="search"
                 name="search-movie"
                 id="search-movie"
                 placeholder=""
-                className="w-full text-white bg-darkBlue focus:ring-0 peer"
+                className="w-full text-white py-4 bg-darkBlue rounded-lg focus:ring-0 peer"
                 onChange={props.searchMovie}
                 value={props.searchText}
             />
@@ -29,7 +29,7 @@ function SearchMovie(props: {
             <label
                 htmlFor="search-movie"
                 className="absolute flex items-center gap-2
-                             text-greyishBlue top-6 left-2 transition-all "
+                             text-greyishBlue top-6 left-8 transition-all "
             >
                 <Image
                     src={"/assets/icon-search.svg"}

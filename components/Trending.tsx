@@ -43,9 +43,9 @@ function Trending({ movies }: { movies: [] }) {
             <div className="flex relative items-center gap-4">
                 <button
                     onClick={slideLeft}
-                    className="opacity-50 cursor-pointer hover:opacity-100"
+                    className="opacity-50 cursor-pointer hover:opacity-100 z-10"
                 >
-                    <MdChevronLeft size={30} />
+                    <MdChevronLeft size={40} />
                 </button>
 
                 <ul
@@ -142,9 +142,9 @@ function Trending({ movies }: { movies: [] }) {
                 </ul>
                 <button
                     onClick={slideRight}
-                    className="opacity-50 cursor-pointer hover:opacity-100"
+                    className="opacity-50 cursor-pointer hover:opacity-100 z-10"
                 >
-                    <MdChevronRight size={30} />
+                    <MdChevronRight size={40} />
                 </button>
             </div>
         </div>
