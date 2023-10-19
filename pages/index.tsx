@@ -1,18 +1,10 @@
 import clientPromise from "../lib/mongodb";
 import { ChangeEvent, useRef, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import Head from "next/head";
-
-import Navigation from "../components/navigation";
 import Trending from "../components/Trending";
 import Recommended from "../components/Recommended";
 import SearchMovie from "../components/SearchMovie";
-
-type ConnectionStatus = {
-    isConnected: boolean;
-};
 
 export async function getServerSideProps() {
     try {
@@ -60,10 +52,11 @@ export default function Home({
 
             <main className="bg-darkBlue text-white">
                 <div className="py-6">
-                    <h1 className="text-red sr-only">Entertainment center</h1>
+                    <h1 className="sr-only">Entertainment center</h1>
                     <SearchMovie
                         searchMovie={searchMovie}
                         searchText={searchText}
+                        labelText="Search for movies or Tv series"
                     />
                     <Trending movies={movies} />
                     <Recommended movies={movies} />

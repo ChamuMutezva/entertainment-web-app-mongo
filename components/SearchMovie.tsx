@@ -4,6 +4,7 @@ import Image from "next/image";
 function SearchMovie(props: {
     searchMovie: React.ChangeEventHandler<HTMLInputElement>;
     searchText: string;
+    labelText: string;
 }) {
     return (
         <form noValidate className="relative p-4 bg-inherit">
@@ -37,7 +38,7 @@ function SearchMovie(props: {
                     height={32}
                     alt=""
                 />
-                Search for movies or Tv series
+               {props.labelText}
             </label>
         </form>
     );
