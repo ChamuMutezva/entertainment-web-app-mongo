@@ -39,7 +39,7 @@ function Trending({ movies }: { movies: [] }) {
 
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="px-12">Trending</h2>
+            <h2 className="px-12 text-xl">Trending</h2>
             <div className="flex relative items-center gap-4">
                 <button
                     onClick={slideLeft}
@@ -114,7 +114,9 @@ function Trending({ movies }: { movies: [] }) {
 
                                         <div className="w-full">
                                             <div className="flex justify-start items-center gap-3">
-                                                <p>{movie.year}</p>
+                                                <p className="text-xs font-light opacity-75">
+                                                    {movie.year}
+                                                </p>
                                                 <Image
                                                     width={12}
                                                     height={12}
@@ -126,11 +128,15 @@ function Trending({ movies }: { movies: [] }) {
                                                             : "/assets/icon-category-tv.svg"
                                                     }`}
                                                 />
-                                                <p>{movie.category}</p>
-                                                <p>{movie.rating}</p>
+                                                <p className="text-xs font-light opacity-75">
+                                                    {movie.category}
+                                                </p>
+                                                <p className="font-light text-sm">
+                                                    {movie.rating}
+                                                </p>
                                             </div>
                                             <h2
-                                                className={`text-[1.5rem] z-[1] relative w-full object-cover`}
+                                                className={`text-base font-normal z-[1] relative w-full object-cover`}
                                             >
                                                 {movie.title}
                                             </h2>

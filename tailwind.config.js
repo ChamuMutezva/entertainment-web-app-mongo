@@ -12,7 +12,11 @@ module.exports = {
             semiDarkBlue: "hsl(var(--semi-dark-blue) / 1)",
             red: "hsl(var(--color-red) / 1)",
         },
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ['var(--font-outfit)']
+            }
+        },
     },
     plugins: [
         require("@tailwindcss/forms"),       

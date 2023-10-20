@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Background from "./background";
 
-function Recommended({ movies }: { movies: []}) {
+function Recommended({ movies }: { movies: [] }) {
     return (
         <div className="p-8">
-            <h2>Recommended for you</h2>
-            <ul className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 py-4">
+            <h2 className="text-xl">Recommended for you</h2>
+            <ul className="w-full grid grid-cols-1 min-[23rem]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-4">
                 {movies?.map(
                     (movie: {
                         src: string;
@@ -49,7 +49,9 @@ function Recommended({ movies }: { movies: []}) {
                             </picture>
                             <div>
                                 <div className="flex gap-4 items-center">
-                                    <p>{movie.year}</p>
+                                    <p className="text-xs font-light opacity-75">
+                                        {movie.year}
+                                    </p>
                                     <Image
                                         width={12}
                                         height={12}
@@ -60,10 +62,14 @@ function Recommended({ movies }: { movies: []}) {
                                                 : "/assets/icon-category-tv.svg"
                                         }`}
                                     />
-                                    <p>{movie.category}</p>
-                                    <p>{movie.rating}</p>
+                                    <p className="text-xs font-light opacity-75">
+                                        {movie.category}
+                                    </p>
+                                    <p className="font-light text-sm">
+                                        {movie.rating}
+                                    </p>
                                 </div>
-                                <h2 className={`text-[1.5rem] z-[1] relative`}>
+                                <h2 className={`text-base font-normal text-[1.5rem] z-[1] relative`}>
                                     {movie.title}
                                 </h2>
                             </div>
