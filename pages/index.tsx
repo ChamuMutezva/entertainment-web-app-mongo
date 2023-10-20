@@ -1,5 +1,5 @@
 import clientPromise from "../lib/mongodb";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import Trending from "../components/Trending";
@@ -38,11 +38,23 @@ export default function Home({
     movies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const [searchText, setSearchText] = useState("");
+    const [displayMovies, setDisplayMovies] = useState(movies);
 
     function searchMovie(event: ChangeEvent<HTMLInputElement>): void {
         return setSearchText(event.target.value);
     }
 
+    function filteredData() {
+        return setDisplayMovies(
+            movies.filter((movie: { title: string }) =>
+                movie.title.toLowerCase().includes(searchText)
+            )
+        );
+    }
+    useEffect(() => {
+        filteredData();
+    }, [searchText]);
+    
     return (
         <div className="container w-screen">
             <Head>
@@ -58,8 +70,8 @@ export default function Home({
                         searchText={searchText}
                         labelText="Search for movies or Tv series"
                     />
-                    <Trending movies={movies} />
-                    <Recommended movies={movies} />
+                    <Trending movies={displayMovies} />
+                    <Recommended movies={displayMovies} />
                 </div>
             </main>
         </div>

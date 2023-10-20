@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
 import clientPromise from "../../lib/mongodb";
 import SearchMovie from "../../components/SearchMovie";
@@ -36,11 +36,22 @@ function TVSeries({
     movies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const [searchText, setSearchText] = useState("");
+    const [displayMovies, setDisplayMovies] = useState(movies);
 
     function searchMovie(event: ChangeEvent<HTMLInputElement>): void {
         return setSearchText(event.target.value);
     }
-    console.log(movies);
+    function filteredData() {
+        return setDisplayMovies(
+            movies.filter((movie: { title: string }) =>
+                movie.title.toLowerCase().includes(searchText)
+            )
+        );
+    }
+    useEffect(() => {
+        filteredData();
+    }, [searchText]);
+    
     return (
         <div className="container w-screen">
             <main className="bg-darkBlue text-white">
@@ -51,7 +62,7 @@ function TVSeries({
                         searchText={searchText}
                         labelText="Search for TV Series"
                     />
-                    <Recommended movies={movies} />
+                    <Recommended movies={displayMovies} />
                 </div>
             </main>
         </div>
