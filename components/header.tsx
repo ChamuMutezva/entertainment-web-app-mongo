@@ -9,8 +9,10 @@ function Header() {
             <Link href={"/"} aria-label="home">
                 <Image src={"/assets/logo.svg"} width={33} height={27} alt="" />
             </Link>
+
             <Navigation />
-            <Link href={"/"}>
+            
+            <Link href={"/"} aria-label="profile">
                 <Image
                     src={"/assets/image-avatar.png"}
                     width={24}

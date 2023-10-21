@@ -12,7 +12,7 @@ function Recommended({
     return (
         <div className="p-8">
             <h2 className="text-xl sm:text-[2rem]">{mainHeading}</h2>
-            <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-4">
+            <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-8 py-4">
                 {movies?.map(
                     (movie: {
                         src: string;
