@@ -54,7 +54,7 @@ export default function Home({
     useEffect(() => {
         filteredData();
     }, [searchText]);
-    
+
     return (
         <div className="container w-screen">
             <Head>
@@ -71,7 +71,10 @@ export default function Home({
                         labelText="Search for movies or Tv series"
                     />
                     <Trending movies={displayMovies} />
-                    <Recommended movies={displayMovies} />
+                    <Recommended
+                        movies={displayMovies}
+                        mainHeading={"Recommended for you"}
+                    />
                 </div>
             </main>
         </div>

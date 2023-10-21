@@ -41,7 +41,7 @@ function BookMarked({
     function searchMovie(event: ChangeEvent<HTMLInputElement>): void {
         return setSearchText(event.target.value);
     }
-    
+
     function filteredData() {
         return setDisplayMovies(
             movies.filter((movie: { title: string }) =>
@@ -63,7 +63,10 @@ function BookMarked({
                         searchText={searchText}
                         labelText="Search for bookmarked shows"
                     />
-                    <Recommended movies={displayMovies} />
+                    <Recommended
+                        movies={displayMovies}
+                        mainHeading="Bookmarked Movies"
+                    />
                 </div>
             </main>
         </div>

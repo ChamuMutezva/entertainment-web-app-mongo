@@ -99,7 +99,7 @@ function Trending({ movies }: { movies: [] }) {
                                         />
                                     </picture>
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between items-end p-4">
-                                        <div className="rounded-full bg-greyishBlue p-2 inline-block">
+                                        <div className="rounded-full bg-greyishBlue p-2 flex justify-center items-center w-8 h-8">
                                             <Image
                                                 src={`${
                                                     movie.isBookmarked

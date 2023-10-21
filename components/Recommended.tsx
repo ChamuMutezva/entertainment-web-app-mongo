@@ -2,11 +2,17 @@ import React from "react";
 import Image from "next/image";
 import Background from "./background";
 
-function Recommended({ movies }: { movies: [] }) {
+function Recommended({
+    movies,
+    mainHeading,
+}: {
+    movies: [];
+    mainHeading: string;
+}) {
     return (
         <div className="p-8">
-            <h2 className="text-xl">Recommended for you</h2>
-            <ul className="w-full grid grid-cols-1 min-[23rem]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-4">
+            <h2 className="text-xl sm:text-[2rem]">{mainHeading}</h2>
+            <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-4">
                 {movies?.map(
                     (movie: {
                         src: string;
@@ -14,8 +20,9 @@ function Recommended({ movies }: { movies: [] }) {
                         year: number;
                         category: string;
                         rating: string;
+                        isBookmarked: boolean;
                     }) => (
-                        <li key={movie.title}>
+                        <li key={movie.title} className="relative recommended-list">
                             <picture className="flex justify-center items-center">
                                 <source
                                     media="(min-width: 64rem)"
@@ -38,6 +45,7 @@ function Recommended({ movies }: { movies: [] }) {
                                 <Background
                                     width={328}
                                     height={220}
+                                    recommendedImg = "recommended-img"
                                     priority={movie.title === "Beyond Earth"}
                                     src={`/assets/thumbnails/${movie.title
                                         .replace(/'/g, "")
@@ -47,6 +55,20 @@ function Recommended({ movies }: { movies: [] }) {
                                         .toLowerCase()}/regular/small.jpg`}
                                 />
                             </picture>
+
+                            <div className="rounded-full bg-greyishBlue p-2 flex justify-center items-center absolute top-2 right-2 opacity-50 w-8 h-8">
+                                <Image
+                                    src={`${
+                                        movie.isBookmarked
+                                            ? "/assets/icon-bookmark-full.svg"
+                                            : "/assets/icon-bookmark-empty.svg"
+                                    }`}
+                                    alt=""
+                                    width={12}
+                                    height={14}
+                                />
+                            </div>
+
                             <div>
                                 <div className="flex gap-4 items-center">
                                     <p className="text-xs font-light opacity-75">
@@ -69,7 +91,9 @@ function Recommended({ movies }: { movies: [] }) {
                                         {movie.rating}
                                     </p>
                                 </div>
-                                <h2 className={`text-base font-normal text-[1.5rem] z-[1] relative`}>
+                                <h2
+                                    className={`text-base sm:text-lg font-normal text-[1.5rem] z-[1] relative`}
+                                >
                                     {movie.title}
                                 </h2>
                             </div>

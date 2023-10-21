@@ -1,5 +1,5 @@
 import clientPromise from "../../lib/mongodb";
-
+/*
 export default async  (req, res) => {
    try {
        const client = await clientPromise;
@@ -16,3 +16,4 @@ export default async  (req, res) => {
        console.error(e);
    }
 };
+*/

@@ -61,7 +61,7 @@ function Movies({
                         searchText={searchText}
                         labelText="Search for movies"
                     />
-                    <Recommended movies={displayMovies} />
+                    <Recommended movies={displayMovies} mainHeading="Movies" />
                 </div>
             </main>
         </div>

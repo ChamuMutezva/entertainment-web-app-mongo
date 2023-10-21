@@ -21,7 +21,7 @@ function SearchMovie(props: {
             <label
                 htmlFor="search-movie"
                 className="absolute flex items-center gap-2
-                             text-white top-6 left-8 transition-all text-base opacity-40"
+                             text-white top-6 left-8 transition-all text-base sm:text-2xl opacity-40"
             >
                 <Image
                     src={"/assets/icon-search.svg"}

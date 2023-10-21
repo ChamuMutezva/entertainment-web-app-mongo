@@ -51,7 +51,7 @@ function TVSeries({
     useEffect(() => {
         filteredData();
     }, [searchText]);
-    
+
     return (
         <div className="container w-screen">
             <main className="bg-darkBlue text-white">
@@ -62,7 +62,10 @@ function TVSeries({
                         searchText={searchText}
                         labelText="Search for TV Series"
                     />
-                    <Recommended movies={displayMovies} />
+                    <Recommended
+                        movies={displayMovies}
+                        mainHeading="TV Series"
+                    />
                 </div>
             </main>
         </div>
