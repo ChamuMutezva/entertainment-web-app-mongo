@@ -45,8 +45,7 @@ function Recommended({
                                 <Background
                                     width={328}
                                     height={220}
-                                    recommendedImg = "recommended-img"
-                                    priority={movie.title === "Beyond Earth"}
+                                    recommendedImg = "recommended-img"                                   
                                     src={`/assets/thumbnails/${movie.title
                                         .replace(/'/g, "")
                                         .replace(/:/g, "")

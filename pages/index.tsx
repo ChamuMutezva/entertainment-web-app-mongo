@@ -5,6 +5,7 @@ import Head from "next/head";
 import Trending from "../components/Trending";
 import Recommended from "../components/Recommended";
 import SearchMovie from "../components/SearchMovie";
+import EmptyCard from "../components/emptyCard";
 
 export async function getServerSideProps() {
     try {
@@ -51,6 +52,7 @@ export default function Home({
             )
         );
     }
+    
     useEffect(() => {
         filteredData();
     }, [searchText]);
@@ -71,10 +73,14 @@ export default function Home({
                         labelText="Search for movies or Tv series"
                     />
                     <Trending movies={displayMovies} />
-                    <Recommended
-                        movies={displayMovies}
-                        mainHeading={"Recommended for you"}
-                    />
+                    {displayMovies.length > 0 ? (
+                        <Recommended
+                            movies={displayMovies}
+                            mainHeading={"Recommended for you"}
+                        />
+                    ) : (
+                        <EmptyCard />
+                    )}
                 </div>
             </main>
         </div>

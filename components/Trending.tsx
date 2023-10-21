@@ -41,12 +41,14 @@ function Trending({ movies }: { movies: [] }) {
         <div className="flex flex-col gap-4">
             <h2 className="px-12 text-xl">Trending</h2>
             <div className="flex relative items-center gap-4">
-                <button
-                    onClick={slideLeft}
-                    className="opacity-50 cursor-pointer hover:opacity-100 z-10"
-                >
-                    <MdChevronLeft size={40} />
-                </button>
+                {movies.length > 0 && (
+                    <button
+                        onClick={slideLeft}
+                        className="opacity-50 cursor-pointer hover:opacity-100 z-10"
+                    >
+                        <MdChevronLeft size={40} />
+                    </button>
+                )}
 
                 <ul
                     id="slider"
@@ -83,13 +85,7 @@ function Trending({ movies }: { movies: [] }) {
                                         />
                                         <Background
                                             width={480}
-                                            height={280}
-                                            priority={
-                                                movie.title ===
-                                                    "Beyond Earth" ||
-                                                movie.title ===
-                                                    "Undiscovered Cities"
-                                            }
+                                            height={280 || height}
                                             src={`/assets/thumbnails/${movie.title
                                                 .replace(/'/g, "")
                                                 .replace(/:/g, "")
@@ -146,12 +142,15 @@ function Trending({ movies }: { movies: [] }) {
                             )
                         )}
                 </ul>
-                <button
-                    onClick={slideRight}
-                    className="opacity-50 cursor-pointer hover:opacity-100 z-10"
-                >
-                    <MdChevronRight size={40} />
-                </button>
+
+                {movies.length > 0 && (
+                    <button
+                        onClick={slideRight}
+                        className="opacity-50 cursor-pointer hover:opacity-100 z-10"
+                    >
+                        <MdChevronRight size={40} />
+                    </button>
+                )}
             </div>
         </div>
     );

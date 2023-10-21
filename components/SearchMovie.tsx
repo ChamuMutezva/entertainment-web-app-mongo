@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import Image from "next/image";
 
 function SearchMovie(props: {
@@ -6,8 +6,14 @@ function SearchMovie(props: {
     searchText: string;
     labelText: string;
 }) {
+    function submit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()  
+        const formData = new FormData(event.currentTarget)    
+        console.log(formData)      
+    }
+
     return (
-        <form noValidate className="relative p-4 bg-inherit">
+        <form noValidate className="relative p-4 bg-inherit" onSubmit={submit}>
             <input
                 type="search"
                 name="search-movie"

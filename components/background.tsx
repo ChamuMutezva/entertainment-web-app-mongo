@@ -2,14 +2,13 @@ import React from "react";
 import Image from "next/image";
 
 function Background({
-    src,
-    priority,
+    src,  
     width,
     height,
     recommendedImg,
 }: {
     src: string;
-    priority: boolean;
+   
     width: number;
     height: number;
     recommendedImg?: string;
@@ -18,7 +17,7 @@ function Background({
         <Image
             src={src}
             alt=""
-            priority={priority}
+            priority
             quality={100}
             height={height}
             width={width}
