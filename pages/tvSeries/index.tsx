@@ -53,21 +53,14 @@ function TVSeries({
     }, [searchText]);
 
     return (
-        <div className="container w-screen">
-            <main className="bg-darkBlue text-white">
-                <div className="py-6">
-                    <h1 className="sr-only">Entertainment center</h1>
-                    <SearchMovie
-                        searchMovie={searchMovie}
-                        searchText={searchText}
-                        labelText="Search for TV Series"
-                    />
-                    <Recommended
-                        movies={displayMovies}
-                        mainHeading="TV Series"
-                    />
-                </div>
-            </main>
+        <div className="container w-screen bg-darkBlue text-white py-6">
+            <h1 className="sr-only">Entertainment center</h1>
+            <SearchMovie
+                searchMovie={searchMovie}
+                searchText={searchText}
+                labelText="Search for TV Series"
+            />
+            <Recommended movies={displayMovies} mainHeading="TV Series" />
         </div>
     );
 }
