@@ -58,7 +58,7 @@ export default function Home({
     }, [searchText]);
 
     return (
-        <div className="container w-screen bg-darkBlue text-white py-6">
+        <div className="container w-screen text-white py-6">
             <Head>
                 <link
                     rel="apple-touch-icon"
@@ -95,7 +95,9 @@ export default function Home({
                 searchText={searchText}
                 labelText="Search for movies or Tv series"
             />
+
             <Trending movies={displayMovies} />
+            
             {displayMovies.length > 0 ? (
                 <Recommended
                     movies={displayMovies}

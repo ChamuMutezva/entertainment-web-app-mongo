@@ -19,7 +19,7 @@ function SearchMovie(props: {
                 name="search-movie"
                 id="search-movie"
                 placeholder=""
-                className="w-full text-white py-4 bg-darkBlue rounded-lg focus:ring-0 peer"
+                className="w-full text-white py-4 bg-darkBlue rounded-lg border-none focus:ring-0 peer"
                 onChange={props.searchMovie}
                 value={props.searchText}
             />

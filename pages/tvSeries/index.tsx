@@ -4,7 +4,7 @@ import clientPromise from "../../lib/mongodb";
 import SearchMovie from "../../components/SearchMovie";
 import Recommended from "../../components/Recommended";
 import Head from "next/head";
-
+import EmptyCard from "../../components/emptyCard";
 
 export async function getServerSideProps() {
     try {
@@ -55,7 +55,7 @@ function TVSeries({
     }, [searchText]);
 
     return (
-        <div className="container w-screen bg-darkBlue text-white py-6">
+        <div className="container w-screen text-white py-6">
             <Head>
                 <link
                     rel="apple-touch-icon"
@@ -92,7 +92,12 @@ function TVSeries({
                 searchText={searchText}
                 labelText="Search for TV Series"
             />
-            <Recommended movies={displayMovies} mainHeading="TV Series" />
+
+            {displayMovies.length > 0 ? (
+                <Recommended movies={displayMovies} mainHeading="TV Series" />
+            ) : (
+                <EmptyCard />
+            )}
         </div>
     );
 }

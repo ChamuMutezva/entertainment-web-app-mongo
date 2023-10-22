@@ -4,6 +4,7 @@ import clientPromise from "../../lib/mongodb";
 import SearchMovie from "../../components/SearchMovie";
 import Recommended from "../../components/Recommended";
 import Head from "next/head";
+import EmptyCard from "../../components/emptyCard";
 
 export async function getServerSideProps() {
     try {
@@ -55,7 +56,7 @@ function BookMarked({
     }, [searchText]);
 
     return (
-        <div className="container w-screen bg-darkBlue text-white py-6">
+        <div className="container w-screen text-white py-6">
             <Head>
                 <link
                     rel="apple-touch-icon"
@@ -87,15 +88,21 @@ function BookMarked({
             </Head>
 
             <h1 className="sr-only">Entertainment center</h1>
+
             <SearchMovie
                 searchMovie={searchMovie}
                 searchText={searchText}
                 labelText="Search for bookmarked shows"
             />
-            <Recommended
-                movies={displayMovies}
-                mainHeading="Bookmarked Movies"
-            />
+
+            {displayMovies.length > 0 ? (
+                <Recommended
+                    movies={displayMovies}
+                    mainHeading="Bookmarked Movies"
+                />
+            ) : (
+                <EmptyCard />
+            )}
         </div>
     );
 }

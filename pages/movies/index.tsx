@@ -4,6 +4,7 @@ import clientPromise from "../../lib/mongodb";
 import SearchMovie from "../../components/SearchMovie";
 import Recommended from "../../components/Recommended";
 import Head from "next/head";
+import EmptyCard from "../../components/emptyCard";
 
 export async function getServerSideProps() {
     try {
@@ -53,7 +54,7 @@ function Movies({
         filteredData();
     }, [searchText]);
     return (
-        <div className="container w-screen bg-darkBlue text-white py-6">
+        <div className="container w-screen text-white py-6">
             <Head>
                 <link
                     rel="apple-touch-icon"
@@ -90,7 +91,12 @@ function Movies({
                 searchText={searchText}
                 labelText="Search for movies"
             />
-            <Recommended movies={displayMovies} mainHeading="Movies" />
+
+            {displayMovies.length > 0 ? (
+                <Recommended movies={displayMovies} mainHeading="Movies" />
+            ) : (
+                <EmptyCard />
+            )}
         </div>
     );
 }

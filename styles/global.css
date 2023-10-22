@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+    background-color: hsl(var(--dark-blue) / 1);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -32,11 +33,11 @@ ul::-webkit-scrollbar {
 input:focus-within ~ label,
 input:not(:placeholder-shown) ~ label {
     @apply transform scale-75 -translate-y-10;
-} 
+}
 
 .recommended-img {
-   width: 100%;
-   height: auto;
+    width: 100%;
+    height: auto;
 }
 
 /*
