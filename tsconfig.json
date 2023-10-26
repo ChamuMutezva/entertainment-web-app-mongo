@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "pages/_app.js"  ],
+, "pages/_app.js", "pages/api/register.ts"  ],
   "exclude": [
     "node_modules"
   ]
