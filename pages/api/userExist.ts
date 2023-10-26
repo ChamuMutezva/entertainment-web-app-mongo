@@ -10,7 +10,6 @@ export const config = {
 export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { email } = await req.body;
-        // console.log(`The email: ${email}`);
         const client = await clientPromise;
         const db = client.db("movies_data");
         const user = await db.collection("users").findOne({ email });
@@ -18,9 +17,6 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
 
         res.json({ user });
     } catch (error) {
-        Response.json(
-            { message: "An error occured while registering the user." },
-            { status: 500 }
-        );
+        res.json({ message: "An error occured while registering the user." });
     }
 }
