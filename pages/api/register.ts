@@ -18,13 +18,6 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
         const db = client.db("movies_data");
         const collection = db.collection("users");
 
-        /*
-        const users = await db
-            .collection("users")
-            .find({ email: email })
-            .toArray();
-       */
-
         const users = collection.insertOne({
             name,
             email,
@@ -36,9 +29,8 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
         console.log("Password:", password);
         res.json({ users });
     } catch (error) {
-        return Response.json(
-            { message: "An error occured while registering the user." },
-            { status: 500 }
-        );
+        return res.json({
+            message: "An error occured while registering the user.",
+        });
     }
 }

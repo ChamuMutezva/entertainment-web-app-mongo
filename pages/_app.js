@@ -1,3 +1,4 @@
+import { SessionProvider } from "next-auth/react";
 import "../styles/global.css";
 import { Outfit } from "next/font/google";
 import Layout from "../components/layout";
@@ -6,15 +7,20 @@ const outfit = Outfit({
     subsets: ["latin"],
     display: "swap",
     weight: ["300", "500"],
-    variable: '--font-outfit',
+    variable: "--font-outfit",
 });
 // This default export is required in a new `pages/_app.js` file.
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({
+    Component,
+    pageProps: { session, ...pageProps },
+}) {
     return (
         <Layout>
-            <main className={`${outfit.variable} font-sans`}>
-                <Component {...pageProps} />
-            </main>
+            <SessionProvider session={session}>
+                <main className={`${outfit.variable} font-sans`}>
+                    <Component {...pageProps} />
+                </main>
+            </SessionProvider>
         </Layout>
     );
 }
