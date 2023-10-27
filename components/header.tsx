@@ -11,8 +11,8 @@ function Header() {
             </Link>
 
             <Navigation />
-            
-            <Link href={"/loginPage"} aria-label="profile">
+
+            <Link href={"/"} aria-label="profile">
                 <Image
                     src={"/assets/image-avatar.png"}
                     width={24}

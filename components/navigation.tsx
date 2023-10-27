@@ -7,7 +7,7 @@ function Navigation() {
         <nav>
             <ul className="flex gap-5">
                 <li>
-                    <Link href={"/"} aria-label="all movies and tv series">
+                    <Link href={"/all"} aria-label="all movies and tv series">
                         <Image
                             src={"/assets/icon-nav-home.svg"}
                             width={20}
