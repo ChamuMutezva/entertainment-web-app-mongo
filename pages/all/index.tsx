@@ -90,23 +90,25 @@ export default function Home({
                 <title>Entertainment web app</title>
             </Head>
             <Layout authPage={true}>
-                <h1 className="sr-only">Entertainment center</h1>
-                <SearchMovie
-                    searchMovie={searchMovie}
-                    searchText={searchText}
-                    labelText="Search for movies or Tv series"
-                />
-
-                <Trending movies={displayMovies} />
-
-                {displayMovies.length > 0 ? (
-                    <Recommended
-                        movies={displayMovies}
-                        mainHeading={"Recommended for you"}
+                <main>
+                    <h1 className="sr-only">Entertainment center</h1>
+                    <SearchMovie
+                        searchMovie={searchMovie}
+                        searchText={searchText}
+                        labelText="Search for movies or Tv series"
                     />
-                ) : (
-                    <EmptyCard />
-                )}
+
+                    <Trending movies={displayMovies} />
+
+                    {displayMovies.length > 0 ? (
+                        <Recommended
+                            movies={displayMovies}
+                            mainHeading={"Recommended for you"}
+                        />
+                    ) : (
+                        <EmptyCard />
+                    )}
+                </main>
             </Layout>
         </div>
     );

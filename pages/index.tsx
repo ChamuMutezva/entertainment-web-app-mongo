@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 
 function LoginPage() {
     return (
-        <div className="container w-screen text-white py-6">
+        <main className="container w-screen text-white grid place-items-center h-screen p-6">
             <Head>
                 <link
                     rel="apple-touch-icon"
@@ -38,7 +38,7 @@ function LoginPage() {
             <Layout authPage={false}>
                 <LoginForm />
             </Layout>
-        </div>
+        </main>
     );
 }
 

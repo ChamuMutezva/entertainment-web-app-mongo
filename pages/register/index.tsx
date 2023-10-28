@@ -5,7 +5,7 @@ import Head from "next/head";
 
 function Register() {
     return (
-        <div className="container w-screen text-white py-6">
+        <main className="container w-screen text-white grid place-items-center p-6">
             <Head>
                 <link
                     rel="apple-touch-icon"
@@ -38,7 +38,7 @@ function Register() {
             <Layout authPage={false}>
                 <RegisterForm />
             </Layout>
-        </div>
+        </main>
     );
 }
 

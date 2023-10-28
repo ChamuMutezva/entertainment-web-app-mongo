@@ -86,18 +86,23 @@ function Movies({
                 <title>Entertainment web app</title>
             </Head>
             <Layout authPage={true}>
-                <h1 className="sr-only">Entertainment center</h1>
-                <SearchMovie
-                    searchMovie={searchMovie}
-                    searchText={searchText}
-                    labelText="Search for movies"
-                />
+                <main>
+                    <h1 className="sr-only">Entertainment center</h1>
+                    <SearchMovie
+                        searchMovie={searchMovie}
+                        searchText={searchText}
+                        labelText="Search for movies"
+                    />
 
-                {displayMovies.length > 0 ? (
-                    <Recommended movies={displayMovies} mainHeading="Movies" />
-                ) : (
-                    <EmptyCard />
-                )}
+                    {displayMovies.length > 0 ? (
+                        <Recommended
+                            movies={displayMovies}
+                            mainHeading="Movies"
+                        />
+                    ) : (
+                        <EmptyCard />
+                    )}
+                </main>
             </Layout>
         </div>
     );

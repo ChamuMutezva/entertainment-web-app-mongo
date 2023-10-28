@@ -17,9 +17,9 @@ export default function MyApp({
     return (
         <Layout>
             <SessionProvider session={session}>
-                <main className={outfit.className}>
+                <div className={outfit.className}>
                     <Component {...pageProps} />
-                </main>
+                </div>
             </SessionProvider>
         </Layout>
     );

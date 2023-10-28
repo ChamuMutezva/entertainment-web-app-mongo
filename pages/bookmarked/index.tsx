@@ -89,22 +89,24 @@ function BookMarked({
             </Head>
 
             <Layout authPage={true}>
-                <h1 className="sr-only">Entertainment center</h1>
+                <main>
+                    <h1 className="sr-only">Entertainment center</h1>
 
-                <SearchMovie
-                    searchMovie={searchMovie}
-                    searchText={searchText}
-                    labelText="Search for bookmarked shows"
-                />
-
-                {displayMovies.length > 0 ? (
-                    <Recommended
-                        movies={displayMovies}
-                        mainHeading="Bookmarked Movies"
+                    <SearchMovie
+                        searchMovie={searchMovie}
+                        searchText={searchText}
+                        labelText="Search for bookmarked shows"
                     />
-                ) : (
-                    <EmptyCard />
-                )}
+
+                    {displayMovies.length > 0 ? (
+                        <Recommended
+                            movies={displayMovies}
+                            mainHeading="Bookmarked Movies"
+                        />
+                    ) : (
+                        <EmptyCard />
+                    )}
+                </main>
             </Layout>
         </div>
     );

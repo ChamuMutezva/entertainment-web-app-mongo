@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
     return (
         <footer className="py-8 px-4 text-white">
-            <p>
+            <p className="text-center">
                 This is a solution to the
                 <a
                     href="https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X"
@@ -22,7 +22,7 @@ function Footer() {
                     Chamu Mutezva
                 </a>
             </p>
-            <p>
+            <p className="text-center">
                 Frontend Mentor challenges help you improve your coding skills
                 by building realistic project.
             </p>
