@@ -70,7 +70,7 @@ function LoginForm() {
                         </label>
                     </div>
                     <button className="bg-[red] text-white font-light text-[0.94rem] cursor-pointer px-6 py-2">
-                        Login
+                        Login to your account
                     </button>
                     {error && (
                         <div className="bg-[red] text-white w-fit text-sm py-1 px-3 rounded-lg mt-2">
@@ -79,11 +79,11 @@ function LoginForm() {
                     )}
 
                     <Link
-                        className="text-sm mt-3 text-right"
+                        className="flex justify-center items-center gap-2 text-sm mt-3 text-right text-white font-light text-[0.94rem]"
                         href={"/register"}
                     >
                         Don't have an account?{" "}
-                        <span className="underline">Register</span>
+                        <span className="underline text-[red]">Register</span>
                     </Link>
                 </form>
             </div>

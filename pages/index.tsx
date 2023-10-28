@@ -33,7 +33,7 @@ function LoginPage() {
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
-                <title>Entertainment web app</title>
+                <title>Entertainment web app - Login</title>
             </Head>
             <Layout authPage={false}>
                 <LoginForm />
