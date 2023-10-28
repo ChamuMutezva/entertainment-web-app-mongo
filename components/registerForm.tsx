@@ -118,7 +118,7 @@ function RegisterForm() {
                     )}
                     <Link
                         className="text-sm mt-3 text-right text-white"
-                        href={"/loginPage"}
+                        href={"/"}
                     >
                         Already have an account?{" "}
                         <span className="underline">Login</span>

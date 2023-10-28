@@ -5,6 +5,7 @@ import SearchMovie from "../../components/SearchMovie";
 import Recommended from "../../components/Recommended";
 import Head from "next/head";
 import EmptyCard from "../../components/emptyCard";
+import Layout from "../../components/layout";
 
 export async function getServerSideProps() {
     try {
@@ -86,18 +87,23 @@ function TVSeries({
                 <title>Entertainment web app</title>
             </Head>
 
-            <h1 className="sr-only">Entertainment center</h1>
-            <SearchMovie
-                searchMovie={searchMovie}
-                searchText={searchText}
-                labelText="Search for TV Series"
-            />
+            <Layout authPage={true}>
+                <h1 className="sr-only">Entertainment center</h1>
+                <SearchMovie
+                    searchMovie={searchMovie}
+                    searchText={searchText}
+                    labelText="Search for TV Series"
+                />
 
-            {displayMovies.length > 0 ? (
-                <Recommended movies={displayMovies} mainHeading="TV Series" />
-            ) : (
-                <EmptyCard />
-            )}
+                {displayMovies.length > 0 ? (
+                    <Recommended
+                        movies={displayMovies}
+                        mainHeading="TV Series"
+                    />
+                ) : (
+                    <EmptyCard />
+                )}
+            </Layout>
         </div>
     );
 }

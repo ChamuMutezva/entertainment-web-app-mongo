@@ -17,7 +17,7 @@ export default function MyApp({
     return (
         <Layout>
             <SessionProvider session={session}>
-                <main className={`${outfit.variable} font-sans`}>
+                <main className={outfit.className}>
                     <Component {...pageProps} />
                 </main>
             </SessionProvider>

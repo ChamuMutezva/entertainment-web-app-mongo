@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import LoginForm from "../components/loginForm";
+import Layout from "../components/layout";
 
 function LoginPage() {
     return (
@@ -34,8 +35,9 @@ function LoginPage() {
                 <meta name="theme-color" content="#ffffff" />
                 <title>Entertainment web app</title>
             </Head>
-            
-            <LoginForm/>
+            <Layout authPage={false}>
+                <LoginForm />
+            </Layout>
         </div>
     );
 }

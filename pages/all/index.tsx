@@ -6,6 +6,7 @@ import Trending from "../../components/Trending";
 import Recommended from "../../components/Recommended";
 import SearchMovie from "../../components/SearchMovie";
 import EmptyCard from "../../components/emptyCard";
+import Layout from "../../components/layout";
 
 export async function getServerSideProps() {
     try {
@@ -88,24 +89,25 @@ export default function Home({
                 <meta name="theme-color" content="#ffffff" />
                 <title>Entertainment web app</title>
             </Head>
-
-            <h1 className="sr-only">Entertainment center</h1>
-            <SearchMovie
-                searchMovie={searchMovie}
-                searchText={searchText}
-                labelText="Search for movies or Tv series"
-            />
-
-            <Trending movies={displayMovies} />
-            
-            {displayMovies.length > 0 ? (
-                <Recommended
-                    movies={displayMovies}
-                    mainHeading={"Recommended for you"}
+            <Layout authPage={true}>
+                <h1 className="sr-only">Entertainment center</h1>
+                <SearchMovie
+                    searchMovie={searchMovie}
+                    searchText={searchText}
+                    labelText="Search for movies or Tv series"
                 />
-            ) : (
-                <EmptyCard />
-            )}
+
+                <Trending movies={displayMovies} />
+
+                {displayMovies.length > 0 ? (
+                    <Recommended
+                        movies={displayMovies}
+                        mainHeading={"Recommended for you"}
+                    />
+                ) : (
+                    <EmptyCard />
+                )}
+            </Layout>
         </div>
     );
 }

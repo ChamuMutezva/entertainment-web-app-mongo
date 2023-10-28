@@ -2,12 +2,18 @@ import Footer from "./footer";
 import Header from "./header";
 
 // sharing components
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+    children,
+    authPage,
+}: {
+    children: React.ReactNode;
+    authPage: boolean;
+}) {
     return (
         <>
-            <Header />
+            {authPage && <Header />}
             <>{children}</>
-            <Footer />
+            {authPage && <Footer />}
         </>
     );
 }
