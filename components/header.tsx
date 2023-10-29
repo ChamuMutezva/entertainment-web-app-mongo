@@ -2,12 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import Navigation from "./navigation";
-import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 function Header() {
     const { data: session } = useSession();
-    console.log(session);
+    const fullname = session?.user?.name;
+    const initials = fullname
+        ?.split(" ")
+        .map((word) => word.charAt(0))
+        .join(" ");
+    console.log(initials);
     return (
         <header className="flex justify-between items-center p-6 bg-semiDarkBlue md:rounded-lg md:m-6">
             <Link href={"/all"} aria-label="all movies">
@@ -16,7 +20,18 @@ function Header() {
 
             <Navigation />
             <div className="flex gap-2">
-                <span className="hidden sm:block">{session?.user?.name}</span>
+                <span
+                    aria-label={`initial of ${fullname}`}
+                    className="sm:hidden"
+                >
+                    {initials}
+                </span>
+                <span
+                    aria-label={`profile name for`}
+                    className="hidden sm:block"
+                >
+                    {fullname}
+                </span>
                 <button onClick={() => signOut()} aria-label="log out">
                     <Image
                         src={"/assets/image-avatar.png"}

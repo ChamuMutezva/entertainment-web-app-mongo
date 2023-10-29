@@ -29,6 +29,10 @@ function LoginForm() {
     };
     return (
         <div className="shadow-lg p-4 bg-semiDarkBlue rounded-lg border-t-4 w-full max-w-[25rem] border-green-400">
+            <div className="flex items-center justify-center">
+                <Image src="/assets/logo.svg" width={33} height={27} alt="" />
+            </div>
+
             <h1 className="text-[2rem] font-light my-4 mb-6">Login</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div className="relative p-4">
@@ -72,7 +76,10 @@ function LoginForm() {
                     Login to your account
                 </button>
                 {error && (
-                    <div aria-live="polite" className="bg-[red] text-white w-fit text-sm py-1 px-3 rounded-lg mt-2">
+                    <div
+                        aria-live="polite"
+                        className="bg-[red] text-white w-fit text-sm py-1 px-3 rounded-lg mt-2"
+                    >
                         {error}
                     </div>
                 )}
