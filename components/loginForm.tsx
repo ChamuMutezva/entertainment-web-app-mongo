@@ -72,7 +72,7 @@ function LoginForm() {
                     Login to your account
                 </button>
                 {error && (
-                    <div className="bg-[red] text-white w-fit text-sm py-1 px-3 rounded-lg mt-2">
+                    <div aria-live="polite" className="bg-[red] text-white w-fit text-sm py-1 px-3 rounded-lg mt-2">
                         {error}
                     </div>
                 )}

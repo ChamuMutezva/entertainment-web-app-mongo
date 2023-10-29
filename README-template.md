@@ -67,6 +67,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - [How to Scroll Horizontally in React JS - Styled With Tailwind CSS - Javascript](https://www.youtube.com/watch?v=x4bom6Udk_4)
 - [Floating Label Input with React + Tailwind CSS + Hook Form](https://www.youtube.com/watch?v=jQDQOzjMZRo)
 - [intergrating mongodb into your nextjs app](https://www.mongodb.com/developer/videos/integrating-mongodb-into-your-nextjs-app/)
+- generate a secret token using the following url [secret token generator](https://generate-secret.vercel.app/32)
 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
