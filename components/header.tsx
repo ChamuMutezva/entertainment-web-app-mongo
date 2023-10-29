@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import Navigation from "./navigation";
-import UserInfo from "./userInfo";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 

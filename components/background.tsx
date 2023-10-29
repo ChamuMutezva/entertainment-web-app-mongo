@@ -16,8 +16,7 @@ function Background({
     return (
         <Image
             src={src}
-            alt=""
-            priority
+            alt=""            
             quality={100}
             height={height}
             width={width}
