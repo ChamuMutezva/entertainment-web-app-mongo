@@ -45,6 +45,7 @@ function Trending({ movies }: { movies: [] }) {
                     <button
                         onClick={slideLeft}
                         className="opacity-50 cursor-pointer hover:opacity-100 z-10"
+                        aria-label="previous movie"
                     >
                         <MdChevronLeft size={40} />
                     </button>
@@ -147,6 +148,7 @@ function Trending({ movies }: { movies: [] }) {
                     <button
                         onClick={slideRight}
                         className="opacity-50 cursor-pointer hover:opacity-100 z-10"
+                        aria-label="next movie"
                     >
                         <MdChevronRight size={40} />
                     </button>
