@@ -11,7 +11,7 @@ function Recommended({
 }) {
     return (
         <div className="p-8">
-            <h2 className="text-xl sm:text-[2rem]">{mainHeading}</h2>
+            <h2 className="text-xl md:text-[2rem] font-light">{mainHeading}</h2>
             <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-8 py-4">
                 {movies?.map(
                     (movie: {
@@ -22,7 +22,10 @@ function Recommended({
                         rating: string;
                         isBookmarked: boolean;
                     }) => (
-                        <li key={movie.title} className="relative recommended-list">
+                        <li
+                            key={movie.title}
+                            className="relative recommended-list"
+                        >
                             <picture className="flex justify-center items-center">
                                 <source
                                     media="(min-width: 64rem)"
@@ -45,7 +48,7 @@ function Recommended({
                                 <Background
                                     width={328}
                                     height={220}
-                                    recommendedImg = "recommended-img"                                   
+                                    recommendedImg="recommended-img"
                                     src={`/assets/thumbnails/${movie.title
                                         .replace(/'/g, "")
                                         .replace(/:/g, "")
@@ -91,7 +94,7 @@ function Recommended({
                                     </p>
                                 </div>
                                 <h2
-                                    className={`text-base sm:text-lg font-normal text-[1.5rem] z-[1] relative`}
+                                    className={`text-base md:text-lg font-normal text-[1.5rem] z-[1] relative`}
                                 >
                                     {movie.title}
                                 </h2>

@@ -39,7 +39,7 @@ function Trending({ movies }: { movies: [] }) {
 
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="px-12 text-xl">Trending</h2>
+            <h2 className="px-12 text-xl md:text-[2rem] font-light">Trending</h2>
             <div className="flex relative items-center gap-4">
                 {movies.length > 0 && (
                     <button
@@ -133,7 +133,7 @@ function Trending({ movies }: { movies: [] }) {
                                                 </p>
                                             </div>
                                             <h2
-                                                className={`text-base font-normal z-[1] relative w-full object-cover`}
+                                                className={`text-base md:text-xl font-normal z-[1] relative w-full object-cover`}
                                             >
                                                 {movie.title}
                                             </h2>

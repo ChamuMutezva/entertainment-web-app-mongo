@@ -95,7 +95,7 @@ export default function Home({
                     <SearchMovie
                         searchMovie={searchMovie}
                         searchText={searchText}
-                        labelText="Search for movies or Tv series"
+                        labelText="Search for movies or TV series"
                     />
 
                     <Trending movies={displayMovies} />
