@@ -1,21 +1,50 @@
-# Entertainment web app
+# Frontend Mentor - Entertainment web app solution
 
-## Example app using MongoDB
+This is a solution to the [Entertainment web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X). Frontend Mentor challenges help you improve your coding skills by building realistic project.
 
-[MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
+## Table of contents
 
-If you want to learn more about MongoDB, visit the following pages:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Start project](#start-project)
+  - [Configuration](#configuration)
+    - [Set up a MongoDB database](#set-up-a-mongodb-database)
+    - [Set up environment variables](#set-up-environment-variables)
+  - [Run Next.js in development mode](#run-nextjs-in-development-mode)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-- [MongoDB Atlas](https://mongodb.com/atlas)
-- [MongoDB Documentation](https://docs.mongodb.com/)
+## Overview
 
-## Deploy your own
+### The challenge
 
-Once you have access to the environment variables you'll need, deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Users should be able to:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
+- Add/Remove bookmarks from all movies and TV series
+- Search for relevant shows on all pages
+- **Bonus**: Build this project as a full-stack application
+- **Bonus**: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
 
-## How to use
+### Screenshot
+
+### Links
+
+- Frontend Mentor Solution URL: [Entertainment web app with NextJs , MongoDb and Next Auth](https://entertainment-web-app-mongo.vercel.app/)
+- Live Site URL: [Entertainment web app](https://entertainment-web-app-mongo.vercel.app/)
+
+## My process
+
+### Start project
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
@@ -31,13 +60,13 @@ yarn create next-app --example with-mongodb with-mongodb-app
 pnpm create next-app --example with-mongodb with-mongodb-app
 ```
 
-## Configuration
+### Configuration
 
-### Set up a MongoDB database
+#### Set up a MongoDB database
 
 Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
 
-### Set up environment variables
+#### Set up environment variables
 
 Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
 
@@ -67,18 +96,34 @@ You will either see a message stating "You are connected to MongoDB" or "You are
 
 When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
 
-## Deploy on Vercel
+### Built with
 
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+- [Next Auth](https://next-auth.js.org/) - Authentication
+- [Tailwind](https://tailwindcss.com/) - styling
+- CSS Grid
+- Mobile-first workflow
 
-#### Deploy Your Local Project
+### What I learned
 
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+- [How to Scroll Horizontally in React JS - Styled With Tailwind CSS - Javascript](https://www.youtube.com/watch?v=x4bom6Udk_4)
+- [Floating Label Input with React + Tailwind CSS + Hook Form](https://www.youtube.com/watch?v=jQDQOzjMZRo)
+- [intergrating mongodb into your nextjs app](https://www.mongodb.com/developer/videos/integrating-mongodb-into-your-nextjs-app/)
+- generate a secret token using the following url [secret token generator](https://generate-secret.vercel.app/32)
 
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
+```html
+<h1>Some HTML code I'm proud of</h1>
+```
 
-#### Deploy from Our Template
+### Continued development
 
-Alternatively, you can deploy using our template by clicking on the Deploy button below.
+### Useful resources
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+## Author
+
+- Website - [Chamu Mutezva](https://github.com/ChamuMutezva)
+- Frontend Mentor - [@ChamuMutezva](https://www.frontendmentor.io/profile/ChamuMutezva)
+- Twitter - [@ChamuMutezva](https://twitter.com/ChamuMutezva)
+
+## Acknowledgments
