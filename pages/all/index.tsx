@@ -49,7 +49,7 @@ export default function Home({
     function filteredData() {
         return setDisplayMovies(
             movies.filter((movie: { title: string }) =>
-                movie.title.toLowerCase().includes(searchText)
+                movie.title.toLowerCase().includes(searchText.toLowerCase())
             )
         );
     }
