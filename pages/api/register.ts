@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import clientPromise from "../../lib/mongodb";
-//import { NextApiRequest } from "next/types";
 
 export const config = {
     api: {
@@ -24,9 +23,6 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
             password: hashedPassword,
         });
 
-        console.log("Name:", name);
-        console.log("Email: ", email);
-        console.log("Password:", password);
         res.json({ users });
     } catch (error) {
         return res.json({
