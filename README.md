@@ -51,19 +51,27 @@ Users should be able to:
 
 ### Start project
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with
+
+- [npm](https://docs.npmjs.com/cli/init)
 
 ```bash
 npx create-next-app --example with-mongodb with-mongodb-app
 ```
 
+- [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/)
+
 ```bash
 yarn create next-app --example with-mongodb with-mongodb-app
 ```
 
+- or [pnpm](https://pnpm.io) to bootstrap the example:
+
 ```bash
 pnpm create next-app --example with-mongodb with-mongodb-app
 ```
+
+The above command will create a project that is bootstrapped with mongodb
 
 ### Configuration
 
@@ -107,6 +115,7 @@ When you are successfully connected, you can refer to the [MongoDB Node.js Drive
 - [Next.js](https://nextjs.org/) - React framework
 - [Next Auth](https://next-auth.js.org/) - Authentication
 - [Tailwind](https://tailwindcss.com/) - styling
+- [Mongodb](https://www.mongodb.com/) - data storage
 - CSS Grid
 - Mobile-first workflow
 
@@ -117,10 +126,6 @@ When you are successfully connected, you can refer to the [MongoDB Node.js Drive
 - [intergrating mongodb into your nextjs app](https://www.mongodb.com/developer/videos/integrating-mongodb-into-your-nextjs-app/)
 - [How to Integrate MongoDB Into Your Next.js App](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/)
 - generate a secret token using the following url [secret token generator](https://generate-secret.vercel.app/32)
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
 
 ### Continued development
 
