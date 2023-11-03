@@ -32,10 +32,15 @@ Users should be able to:
 - Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
 - Add/Remove bookmarks from all movies and TV series
 - Search for relevant shows on all pages
-- **Bonus**: Build this project as a full-stack application
-- **Bonus**: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
+- authentication - (sign-up/login)
 
 ### Screenshot
+
+![Mobile view](public/screenshots/mobile.png)
+![Macbook air](public/screenshots/macbbookair.png)
+![Login page](public/screenshots/login.png)
+![Register page](public/screenshots/register.png)
+![Desktop vie](public/screenshots/desktop.png)
 
 ### Links
 
@@ -110,6 +115,7 @@ When you are successfully connected, you can refer to the [MongoDB Node.js Drive
 - [How to Scroll Horizontally in React JS - Styled With Tailwind CSS - Javascript](https://www.youtube.com/watch?v=x4bom6Udk_4)
 - [Floating Label Input with React + Tailwind CSS + Hook Form](https://www.youtube.com/watch?v=jQDQOzjMZRo)
 - [intergrating mongodb into your nextjs app](https://www.mongodb.com/developer/videos/integrating-mongodb-into-your-nextjs-app/)
+- [How to Integrate MongoDB Into Your Next.js App](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/)
 - generate a secret token using the following url [secret token generator](https://generate-secret.vercel.app/32)
 
 ```html

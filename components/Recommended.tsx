@@ -9,6 +9,9 @@ function Recommended({
     movies: [];
     mainHeading: string;
 }) {
+    const handleToggle = (id: any) => {
+        console.log(id);
+    };
     return (
         <div className="p-8">
             <h2 className="text-xl md:text-[2rem] font-light">{mainHeading}</h2>
@@ -21,6 +24,7 @@ function Recommended({
                         category: string;
                         rating: string;
                         isBookmarked: boolean;
+                        _id: any;
                     }) => (
                         <li
                             key={movie.title}
@@ -58,7 +62,10 @@ function Recommended({
                                 />
                             </picture>
 
-                            <div className="rounded-full bg-greyishBlue p-2 flex justify-center items-center absolute top-2 right-2 opacity-50 w-8 h-8">
+                            <button
+                                onClick={() => handleToggle(movie._id)}
+                                className="rounded-full bg-greyishBlue p-2 flex justify-center items-center absolute top-2 right-2 opacity-50 w-8 h-8"
+                            >
                                 <Image
                                     src={`${
                                         movie.isBookmarked
@@ -69,7 +76,7 @@ function Recommended({
                                     width={12}
                                     height={14}
                                 />
-                            </div>
+                            </button>
 
                             <div>
                                 <div className="flex gap-4 items-center">

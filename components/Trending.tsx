@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md"
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Background from "./background";
 
 function Trending({ movies }: { movies: [] }) {
@@ -37,9 +37,15 @@ function Trending({ movies }: { movies: [] }) {
         };
     }, [width]);
 
+    const handleToggle = (id: any) => {
+        console.log(id);
+    };
+
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="px-12 text-xl md:text-[2rem] font-light">Trending</h2>
+            <h2 className="px-12 text-xl md:text-[2rem] font-light">
+                Trending
+            </h2>
             <div className="flex relative items-center gap-4">
                 {movies.length > 0 && (
                     <button
@@ -68,6 +74,7 @@ function Trending({ movies }: { movies: [] }) {
                                 isBookmarked: boolean;
                                 year: number;
                                 rating: string;
+                                _id: any;
                             }) => (
                                 <li
                                     ref={ref}
@@ -96,7 +103,12 @@ function Trending({ movies }: { movies: [] }) {
                                         />
                                     </picture>
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between items-end p-4">
-                                        <div className="rounded-full bg-greyishBlue p-2 flex justify-center items-center w-8 h-8">
+                                        <button
+                                            onClick={() =>
+                                                handleToggle(movie._id)
+                                            }
+                                            className="rounded-full bg-greyishBlue p-2 flex justify-center items-center w-8 h-8"
+                                        >
                                             <Image
                                                 src={`${
                                                     movie.isBookmarked
@@ -107,7 +119,7 @@ function Trending({ movies }: { movies: [] }) {
                                                 width={12}
                                                 height={14}
                                             />
-                                        </div>
+                                        </button>
 
                                         <div className="w-full">
                                             <div className="flex justify-start items-center gap-3">
