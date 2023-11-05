@@ -25,7 +25,8 @@ export default async function PATCH(req: NextApiRequest, res: NextApiResponse) {
             { _id: new ObjectId(_id) },
             {
                 $set: { isBookmarked:  !isBookmarked},
-            }
+            },
+            { returnDocument: "after" }
         );
 
         console.log(movie);
