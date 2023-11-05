@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Background from "./background";
+import { ObjectId } from "mongodb";
+import { useRouter } from "next/navigation";
 
 function Recommended({
     movies,
@@ -9,9 +11,30 @@ function Recommended({
     movies: [];
     mainHeading: string;
 }) {
-    const handleToggle = (id: any) => {
-        console.log(id);
+    const router = useRouter();
+    const handleToggle = async (_id: ObjectId) => {
+        try {
+            const res = await fetch("api/booked", {
+                cache: "no-cache",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    _id,
+                }),
+            });
+
+            if (res.ok) {
+                router.refresh();
+            } else {
+                console.log("update failed");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
+
     return (
         <div className="p-8">
             <h2 className="text-xl md:text-[2rem] font-light">{mainHeading}</h2>
@@ -64,7 +87,8 @@ function Recommended({
 
                             <button
                                 onClick={() => handleToggle(movie._id)}
-                                className="rounded-full bg-greyishBlue p-2 flex justify-center items-center absolute top-2 right-2 opacity-50 w-8 h-8"
+                                className="rounded-full bg-greyishBlue p-2 flex justify-center items-center 
+                                absolute top-2 right-2 opacity-50 w-8 h-8 hover:opacity-100"
                             >
                                 <span className="sr-only">
                                     {movie.isBookmarked

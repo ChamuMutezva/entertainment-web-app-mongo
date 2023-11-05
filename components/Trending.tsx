@@ -4,11 +4,13 @@ import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Background from "./background";
 import { ObjectId } from "mongodb";
+import { useRouter } from "next/navigation";
 
 function Trending({ movies }: { movies: [] }) {
     const ref = useRef<HTMLLIElement>(null);
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
+    const router = useRouter();
 
     const slideLeft = () => {
         let slider = document.getElementById("slider");
@@ -39,9 +41,9 @@ function Trending({ movies }: { movies: [] }) {
     }, [width]);
 
     const handleToggle = async (_id: ObjectId) => {
-        
         try {
             const res = await fetch("api/booked", {
+                cache: "no-cache",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,6 +54,7 @@ function Trending({ movies }: { movies: [] }) {
             });
 
             if (res.ok) {
+                router.refresh();
                 return res;
             } else {
                 console.log("update failed");
@@ -80,7 +83,7 @@ function Trending({ movies }: { movies: [] }) {
                 <ul
                     id="slider"
                     className="slider w-full h-full overflow-x-scroll scroll whitespace-nowrap
-             overscroll-contain scroll-smooth scale-105 ease-in-out duration-300"
+                     overscroll-contain scroll-smooth scale-105 ease-in-out duration-300"
                 >
                     {movies
                         ?.filter(
@@ -127,7 +130,8 @@ function Trending({ movies }: { movies: [] }) {
                                             onClick={() =>
                                                 handleToggle(movie._id)
                                             }
-                                            className="rounded-full bg-greyishBlue p-2 flex justify-center items-center w-8 h-8"
+                                            className="rounded-full bg-greyishBlue p-2 flex justify-center 
+                                            items-center w-8 h-8 opacity-50 hover:opacity-100"
                                         >
                                             <span className="sr-only">
                                                 {movie.isBookmarked
