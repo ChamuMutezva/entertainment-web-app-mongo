@@ -129,6 +129,8 @@ When you are successfully connected, you can refer to the [MongoDB Node.js Drive
 
 ### Continued development
 
+Toggle the bookmark button so that a movie/tv series can be bookmarked or vice-versa
+
 ### Useful resources
 
 ## Author

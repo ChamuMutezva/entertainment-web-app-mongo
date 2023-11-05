@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Background from "./background";
+import { ObjectId } from "mongodb";
 
 function Trending({ movies }: { movies: [] }) {
     const ref = useRef<HTMLLIElement>(null);
@@ -37,8 +38,27 @@ function Trending({ movies }: { movies: [] }) {
         };
     }, [width]);
 
-    const handleToggle = (id: any) => {
-        console.log(id);
+    const handleToggle = async (_id: ObjectId) => {
+        
+        try {
+            const res = await fetch("api/booked", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    _id,
+                }),
+            });
+
+            if (res.ok) {
+                return res;
+            } else {
+                console.log("update failed");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -109,6 +129,11 @@ function Trending({ movies }: { movies: [] }) {
                                             }
                                             className="rounded-full bg-greyishBlue p-2 flex justify-center items-center w-8 h-8"
                                         >
+                                            <span className="sr-only">
+                                                {movie.isBookmarked
+                                                    ? `${movie.title} is a ${movie.category} bookmarked for further viewing`
+                                                    : `${movie.title} ${movie.category} is not bookmarked`}
+                                            </span>
                                             <Image
                                                 src={`${
                                                     movie.isBookmarked

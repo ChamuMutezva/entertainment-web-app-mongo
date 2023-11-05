@@ -66,6 +66,11 @@ function Recommended({
                                 onClick={() => handleToggle(movie._id)}
                                 className="rounded-full bg-greyishBlue p-2 flex justify-center items-center absolute top-2 right-2 opacity-50 w-8 h-8"
                             >
+                                <span className="sr-only">
+                                    {movie.isBookmarked
+                                        ? `${movie.title} is a ${movie.category} bookmarked for further viewing`
+                                        : `${movie.title} ${movie.category} is not bookmarked`}
+                                </span>
                                 <Image
                                     src={`${
                                         movie.isBookmarked

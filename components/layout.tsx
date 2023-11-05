@@ -3,6 +3,8 @@ import Footer from "./footer";
 import Header from "./header";
 
 // sharing components
+// authPage is a boolean value that will enable the sharing of the header and footer components in 
+// some pages with the exception of the SignIn/Register and LoginIn pages, which have the `<Layout authPage=false>` setting
 export default function Layout({
     children,
     authPage,
