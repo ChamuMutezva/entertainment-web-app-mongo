@@ -1,11 +1,11 @@
 import React, { FormEvent } from "react";
 import Image from "next/image";
 
-function SearchMovie(props: {
+function SearchMovie(props: Readonly<{
     searchMovie: React.ChangeEventHandler<HTMLInputElement>;
     searchText: string;
     labelText: string;
-}) {
+}>) {
     function submit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()  
         const formData = new FormData(event.currentTarget)    

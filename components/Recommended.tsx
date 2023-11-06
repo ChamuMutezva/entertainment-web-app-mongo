@@ -1,16 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import Background from "./background";
 import { ObjectId } from "mongodb";
 import { useRouter } from "next/navigation";
 
 function Recommended({
     movies,
     mainHeading,
-}: {
+}: Readonly<{
     movies: [];
     mainHeading: string;
-}) {
+}>) {
     const router = useRouter();
     const handleToggle = async (_id: ObjectId) => {
         try {
@@ -53,37 +52,45 @@ function Recommended({
                             key={movie.title}
                             className="relative recommended-list"
                         >
-                            <picture className="flex justify-center items-center">
-                                <source
-                                    media="(min-width: 64rem)"
-                                    srcSet={`/assets/thumbnails/${movie.title
+                            <div className="flex justify-center items-center">
+                                {/*Picture element is ideal in this case scenario - could not find altenative in nextjs */}
+                                <Image
+                                    width={560}
+                                    height={348}
+                                    alt=""
+                                    src={`/assets/thumbnails/${movie.title
                                         .replace(/'/g, "")
                                         .replace(/:/g, "")
                                         .split(" ")
                                         .join("-")
                                         .toLowerCase()}/regular/large.jpg`}
+                                    className="hidden lg:block"
                                 />
-                                <source
-                                    media="(min-width: 38.75rem)"
-                                    srcSet={`/assets/thumbnails/${movie.title
+                                <Image
+                                    width={440}
+                                    height={280}
+                                    alt=""
+                                    src={`/assets/thumbnails/${movie.title
                                         .replace(/'/g, "")
                                         .replace(/:/g, "")
                                         .split(" ")
                                         .join("-")
                                         .toLowerCase()}/regular/medium.jpg`}
+                                    className="hidden sm:block lg:hidden"
                                 />
-                                <Background
-                                    width={328}
-                                    height={220}
-                                    recommendedImg="recommended-img"
+                                <Image
+                                    width={440}
+                                    height={280}
+                                    alt=""
                                     src={`/assets/thumbnails/${movie.title
                                         .replace(/'/g, "")
                                         .replace(/:/g, "")
                                         .split(" ")
                                         .join("-")
                                         .toLowerCase()}/regular/small.jpg`}
+                                    className="sm:hidden w-full"
                                 />
-                            </picture>
+                            </div>
 
                             <button
                                 onClick={() => handleToggle(movie._id)}

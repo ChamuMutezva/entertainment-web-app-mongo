@@ -2,14 +2,13 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import Background from "./background";
 import { ObjectId } from "mongodb";
 import { useRouter } from "next/navigation";
 
-function Trending({ movies }: { movies: [] }) {
+function Trending({ movies }: Readonly<{ movies: [] }>) {
     const ref = useRef<HTMLLIElement>(null);
     const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
+  //  const [height, setHeight] = useState(0);
     const router = useRouter();
 
     const slideLeft = () => {
@@ -27,10 +26,10 @@ function Trending({ movies }: { movies: [] }) {
 
     useEffect(() => {
         setWidth(ref.current?.offsetWidth!);
-        setHeight(ref.current?.offsetWidth! * 1.715);
+      //  setHeight(ref.current?.offsetWidth! * 1.715);
         function handleWindowResize() {
             setWidth(ref.current?.offsetWidth!);
-            setHeight(ref.current?.offsetWidth! * 1.715);
+           // setHeight(ref.current?.offsetWidth! * 1.715);
         }
 
         window.addEventListener("resize", handleWindowResize);
@@ -65,7 +64,7 @@ function Trending({ movies }: { movies: [] }) {
     };
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-8">
             <h2 className="px-12 text-xl md:text-[2rem] font-light">
                 Trending
             </h2>
@@ -104,27 +103,34 @@ function Trending({ movies }: { movies: [] }) {
                                     key={movie.title}
                                     className="relative inline-block rounded-lg px-2 overflow-hidden cursor-pointer"
                                 >
-                                    <picture>
-                                        <source
-                                            media="(min-width: 38.75rem)"
-                                            srcSet={`/assets/thumbnails/${movie.title
+                                    <div>
+                                        {/*Picture element is ideal in this case scenario - could not find altenative in nextjs */}
+                                        <Image
+                                            src={`/assets/thumbnails/${movie.title
                                                 .replace(/'/g, "")
                                                 .replace(/:/g, "")
                                                 .split(" ")
                                                 .join("-")
                                                 .toLowerCase()}/trending/large.jpg`}
+                                            width={940}
+                                            height={460}
+                                            alt=""
+                                            className="max-w-[30rem] rounded-lg z-0 object-contain hidden sm:block"
                                         />
-                                        <Background
+                                        <Image
                                             width={480}
-                                            height={280 || height}
+                                            height={280}
                                             src={`/assets/thumbnails/${movie.title
                                                 .replace(/'/g, "")
                                                 .replace(/:/g, "")
                                                 .split(" ")
                                                 .join("-")
                                                 .toLowerCase()}/trending/small.jpg`}
+                                            alt=""
+                                            className="max-w-full  rounded-lg z-0 object-contain sm:hidden"
                                         />
-                                    </picture>
+                                    </div>
+                                    
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between items-end p-4">
                                         <button
                                             onClick={() =>
