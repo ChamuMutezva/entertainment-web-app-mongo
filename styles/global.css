@@ -40,6 +40,10 @@ input:not(:placeholder-shown) ~ label {
     height: auto;
 }
 
+.active {
+    filter: brightness(50%) invert(100%);
+}
+
 /*
 @layer utilities {
     @variants responsive {

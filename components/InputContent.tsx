@@ -5,12 +5,12 @@ function InputContent({
     name,
     onChange,
     label
-}: {
+}: Readonly<{
     type: string;
     name: string;
     onChange: any;
     label: string;
-}) {
+}>) {
     return (
         <div className="relative p-4">
             <input
