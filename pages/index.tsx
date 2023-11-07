@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React from "react";
 import LoginForm from "../components/loginForm";
 import Layout from "../components/layout";

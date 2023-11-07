@@ -38,7 +38,7 @@ function LoginForm() {
                 <h1 className="text-[2rem] font-light my-4 mb-6">Login</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <InputContent
-                        type="text"
+                        type="email"
                         onChange={(evt: {
                             target: { value: React.SetStateAction<string> };
                         }) => setEmail(evt.target.value)}

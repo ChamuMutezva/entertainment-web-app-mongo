@@ -19,6 +19,9 @@ function InputContent({
                 id={name}
                 placeholder=""
                 onChange={onChange}
+                required
+                minLength={4}
+                maxLength={50}
                 className="w-full text-white py-4 bg-semiDarkBlue border-b-white
             input:not(:placeholder-shown):bg-semiDarkBlue
              border-t-0 border-l-0 border-r-0 border-b-2 focus:ring-0 peer"
