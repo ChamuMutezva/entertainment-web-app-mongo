@@ -112,7 +112,10 @@ function RegisterForm() {
                         label="Confirm Password"
                     />
 
-                    <button className="bg-[red] text-white font-light text-[0.94rem] cursor-pointer px-6 py-2">
+                    <button
+                        className="bg-[red] text-white font-light text-[0.94rem] cursor-pointer px-6 py-2
+                    hover:text-[darkBlue] hover:bg-white focus:text-[darkBlue] focus:bg-white"
+                    >
                         Create an account
                     </button>
 

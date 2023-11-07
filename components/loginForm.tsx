@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -54,7 +55,10 @@ function LoginForm() {
                         label="Password"
                     />
 
-                    <button className="bg-[red] text-white font-light text-[0.94rem] cursor-pointer px-6 py-2">
+                    <button
+                        className="bg-[red] text-white font-light text-[0.94rem] cursor-pointer px-6 py-2
+                    hover:text-[darkBlue] hover:bg-white focus:text-[darkBlue] focus:bg-white"
+                    >
                         Login to your account
                     </button>
 
@@ -68,7 +72,8 @@ function LoginForm() {
                     )}
 
                     <Link
-                        className="flex justify-center items-center gap-2 text-sm mt-3 text-right text-white font-light text-[0.94rem]"
+                        className="flex justify-center items-center gap-2 text-sm mt-3 text-right text-white font-light text-[0.94rem]
+                        hover:opacity-50 focus:opacity-50"
                         href={"/register"}
                     >
                         Don't have an account?{" "}
