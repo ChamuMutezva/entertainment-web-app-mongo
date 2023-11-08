@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+
 
 function Navigation() {
-    const router = useRouter();
+    const pathname = usePathname()
     return (
         <nav>
             <ul className="flex gap-5">
@@ -20,7 +21,7 @@ function Navigation() {
                             height={20}
                             alt=""
                             className={`group-hover:invert group-hover:brightness-50 ${
-                                router.pathname == "/all" ? "active" : ""
+                                pathname == "/all" ? "active" : ""
                             }`}
                         />
                     </Link>
@@ -37,7 +38,7 @@ function Navigation() {
                             height={20}
                             alt=""
                             className={`group-hover:invert group-hover:brightness-50 ${
-                                router.pathname == "/movies" ? "active" : ""
+                                pathname == "/movies" ? "active" : ""
                             }`}
                         />
                     </Link>
@@ -54,7 +55,7 @@ function Navigation() {
                             height={20}
                             alt=""
                             className={`group-hover:invert group-hover:brightness-50 ${
-                                router.pathname == "/tvSeries" ? "active" : ""
+                                pathname == "/tvSeries" ? "active" : ""
                             }`}
                         />
                     </Link>
@@ -71,7 +72,7 @@ function Navigation() {
                             height={20}
                             alt=""
                             className={`group-hover:invert group-hover:brightness-50 ${
-                                router.pathname == "/bookmarked" ? "active" : ""
+                                pathname == "/bookmarked" ? "active" : ""
                             }`}
                         />
                     </Link>

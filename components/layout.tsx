@@ -8,10 +8,10 @@ import Header from "./header";
 export default function Layout({
     children,
     authPage,
-}: {
+}: Readonly<{
     children: React.ReactNode;
     authPage: boolean;
-}) {
+}>) {
     return (
         <>
             <Head>

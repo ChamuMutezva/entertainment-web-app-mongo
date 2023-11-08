@@ -14,7 +14,6 @@ function RegisterForm() {
 
     const router = useRouter();
 
-    console.log("Name: ", name);
     const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
         if (!name || !email || !password || !confirmPassword) {
