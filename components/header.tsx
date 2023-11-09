@@ -11,7 +11,15 @@ function Header() {
         ?.split(" ")
         .map((word) => word.charAt(0))
         .join(" ");
-    console.log(initials);
+
+    const logout = () => {
+        const confirmDialog = confirm("Logout from application");
+        if (confirmDialog) {
+            signOut();
+        } else {
+            return;
+        }
+    };
     return (
         <header className="flex justify-between items-center p-6 bg-semiDarkBlue md:rounded-lg md:m-6">
             <Link href={"/all"} aria-label="all movies">
@@ -32,7 +40,7 @@ function Header() {
                 >
                     {fullname}
                 </span>
-                <button onClick={() => signOut()} aria-label="log out">
+                <button onClick={logout} aria-label="log out">
                     <Image
                         src={"/assets/image-avatar.png"}
                         width={24}
