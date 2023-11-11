@@ -44,6 +44,14 @@ input:not(:placeholder-shown) ~ label {
     filter: brightness(50%) invert(100%);
 }
 
+.btn {
+    background-color: hsl(var(--color-white) / 0.25);
+    left: 50%;
+    margin-left: -58.5px;
+    top: 50%;
+    margin-top: -1.5rem;
+}
+
 /*
 @layer utilities {
     @variants responsive {

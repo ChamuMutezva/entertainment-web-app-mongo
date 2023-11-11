@@ -50,8 +50,22 @@ function Recommended({
                     }) => (
                         <li
                             key={movie.title}
-                            className="relative recommended-list"
+                            className="relative recommended-list group"
                         >
+                            {/* overlay button */}
+                            <button
+                                className="absolute hidden btn h-12 w-[7.25rem] bg-opacity-25 group-hover:flex justify-center items-center gap-4 
+                            rounded-[28.5px]"
+                            >
+                                <Image
+                                    src={"/assets/icon-play.svg"}
+                                    width={30}
+                                    height={30}
+                                    alt=""
+                                />
+                                <span className="opacity-100"> Play</span>
+                            </button>
+                           
                             <div className="flex justify-center items-center">
                                 {/*Picture element is ideal in this case scenario - could not find altenative in nextjs */}
                                 <Image

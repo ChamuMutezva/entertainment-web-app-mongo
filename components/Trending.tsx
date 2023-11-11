@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 function Trending({ movies }: Readonly<{ movies: [] }>) {
     const ref = useRef<HTMLLIElement>(null);
     const [width, setWidth] = useState(0);
-  //  const [height, setHeight] = useState(0);
+    //  const [height, setHeight] = useState(0);
     const router = useRouter();
 
     const slideLeft = () => {
@@ -26,10 +26,10 @@ function Trending({ movies }: Readonly<{ movies: [] }>) {
 
     useEffect(() => {
         setWidth(ref.current?.offsetWidth!);
-      //  setHeight(ref.current?.offsetWidth! * 1.715);
+        //  setHeight(ref.current?.offsetWidth! * 1.715);
         function handleWindowResize() {
             setWidth(ref.current?.offsetWidth!);
-           // setHeight(ref.current?.offsetWidth! * 1.715);
+            // setHeight(ref.current?.offsetWidth! * 1.715);
         }
 
         window.addEventListener("resize", handleWindowResize);
@@ -101,8 +101,24 @@ function Trending({ movies }: Readonly<{ movies: [] }>) {
                                 <li
                                     ref={ref}
                                     key={movie.title}
-                                    className="relative inline-block rounded-lg px-2 overflow-hidden cursor-pointer"
+                                    className="relative inline-block rounded-lg px-2 overflow-hidden cursor-pointer group"
                                 >
+                                    {/* overlay button */}
+                                    <button
+                                        className="absolute hidden btn h-12 w-[7.25rem] bg-opacity-25 group-hover:flex justify-center items-center gap-4 
+                            rounded-[28.5px]"
+                                    >
+                                        <Image
+                                            src={"/assets/icon-play.svg"}
+                                            width={30}
+                                            height={30}
+                                            alt=""
+                                        />
+                                        <span className="opacity-100">
+                                            {" "}
+                                            Play
+                                        </span>
+                                    </button>
                                     <div>
                                         {/*Picture element is ideal in this case scenario - could not find altenative in nextjs */}
                                         <Image
@@ -130,7 +146,7 @@ function Trending({ movies }: Readonly<{ movies: [] }>) {
                                             className="max-w-full  rounded-lg z-0 object-contain sm:hidden"
                                         />
                                     </div>
-                                    
+
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between items-end p-4">
                                         <button
                                             onClick={() =>

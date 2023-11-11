@@ -1,5 +1,5 @@
 import clientPromise from "../../lib/mongodb";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import type { InferGetServerSidePropsType } from "next";
 import Trending from "../../components/Trending";
 import Recommended from "../../components/Recommended";
@@ -37,7 +37,7 @@ export async function getServerSideProps() {
 
 export default function Home({
     movies,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: Readonly<InferGetServerSidePropsType<typeof getServerSideProps>>) {
     const [searchText, setSearchText] = useState("");
     const [displayMovies, setDisplayMovies] = useState(movies);
 
